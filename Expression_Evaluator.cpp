@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-  // awesome program coming soon
+	int getInt(int n);
 }
 
 void HelpUser()

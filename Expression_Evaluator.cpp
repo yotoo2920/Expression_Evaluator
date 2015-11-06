@@ -4,7 +4,10 @@ using namespace std;
 
 int main()
 {
+
 	int getInt(int n);
+	
+	return 0;
 }
 
 void HelpUser()

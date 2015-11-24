@@ -15,7 +15,7 @@ if (exponent>0)
 {
 int ten=10;
 power(ten,exponent);
-cout << ten <<endl;
+
 cout << mantissa/ten<<".";
 int temp=ten;
 while(temp/mantissa>9)

@@ -11,6 +11,7 @@ class Expression
     Expression();
     virtual ~Expression();
     // virtual methods
+    virtual string backToString() = 0;
 
     string type;
         //Expression();

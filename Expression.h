@@ -1,10 +1,17 @@
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
-#include<string>
+
+#include <string>
+
 using namespace std;
+
 class Expression
 {
-    public:
+  public:
+    Expression();
+    virtual ~Expression();
+    // virtual methods
+
     string type;
         //Expression();
         //virtual ~Expression();

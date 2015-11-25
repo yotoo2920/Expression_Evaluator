@@ -28,14 +28,75 @@ std::string Tokenizer::getUserInput()
 
 }
 
+bool Tokenizer::isParentheses(char c) {
+	if(c == '(' || c == ')') return true;
+	else return false;
+}
+
+bool Tokenizer::isParentheses(std::string token) {
+	if(token == "(" || token ==")") return true;
+	else return false;
+}
+
+bool Tokenizer::isOperator(char c) {
+	if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^') return true;
+	else return false;
+}
+
+bool Tokenizer::isOperator(std::string token) {
+	if(token == "+" || token == "-" || token == "*" || token == "/" || token == "^") return true;
+	else return false;
+}
+
+bool Tokenizer::isKeyword(std::string token) {
+	if(token == "sin" || token == "cos" || token == "tan" || token == "log" || token == "root") return true;
+	else return false;
+}
+
+bool Tokenizer::isNumber(std::string token) {
+	bool hasDecimal = false;
+	for(int i = 0; i < token.size(); i++) {
+		if(hasDecimal) {
+			if(!std::isdigit(token[i])) return false;
+		}
+		else {
+			if(!std::isdigit(token[i]) && token[i] != '.') return false;
+			if(token[i] == '.') {
+				if (i == token.size() - 1) return false;
+				hasDecimal = true;
+			}
+		}
+	}
+	return true;
+}
+
 void Tokenizer::parseInput(std::string input)
 {
-// takes entire string that user inputs and breaks it by spaces and puts it into a vector
-	std::istringstream iss(input); 
-	copy(std::istream_iterator<std::string>(iss),
-		std::istream_iterator<std::string>(),
-		back_inserter(this->tokens));
-
+// takes entire string that user inputs and breaks it using operators and parentheses as delimiters. (The delimiters are also stored as tokens). 
+	std::string token = "";
+	char c;
+	for(int i = 0; i < input.size(); i++) {
+		c = input[i];
+		if(isOperator(c) || isParentheses(c)) {
+			if(token != "") this->tokens.push_back (token);
+			token = c;
+			this->tokens.push_back (token);
+			if (c == ')' && i < input.size() - 1 && !isOperator(input[i+1]) && !isspace(input[i+1])) this->tokens.push_back("*");
+			token = "";
+		}
+		else if(i < input.size() - 1 && isdigit(c)) {
+			token += c;
+			if(input[i+1] == '(' || input[i+1] >= 'a' && input[i+1] <= 'z' ) {
+				this->tokens.push_back(token);
+				this->tokens.push_back("*");
+				token = "";
+			} 
+		}
+		else if(!std::isspace(c)){
+			token += c;
+		}
+	}
+	if(token != "") this->tokens.push_back(token);
 // if there is something to push, do this 
 if(!this->tokens.empty())
 {
@@ -71,46 +132,8 @@ std::vector<std::string> &Tokenizer::getSyntaxErrorVector()
 bool Tokenizer::validateOperator(std::string value)
 {
 
-	if (value.at(0)=='+'||
-		value.at(0)=='-'||
-		(value.at(0)=='r'&&
-		value.at(1)=='t')||
-		value.at(0)=='/'||
-		value.at(0)=='*'||
-		value.at(0)=='^'||
-		value.at(0)=='0'||
-		value.at(0)=='1'||
-		value.at(0)=='2'||
-		value.at(0)=='3'||
-		value.at(0)=='4'||
-		value.at(0)=='5'||
-		value.at(0)=='6'||
-		value.at(0)=='7'||
-		value.at(0)=='8'||
-		value.at(0)=='9'||
-		value.at(0)==')'||
-		value.at(0)=='('||
-		(value.at(0)=='l'&& 
-		 value.at(1)=='o'&& 
-		 value.at(2) == 'g')||
-		(value.at(0)=='s'&& 
-		 value.at(1) == 'i'&& 
-		 value.at(2) == 'n')||
-		(value.at(0)== 'c'&&
-			value.at(1)=='o'&&
-			value.at(2)=='s')||
-		(value.at(0)== 't'&&
-			value.at(1)=='a'&&
-			value.at(2)=='n') ||
-		(value.at(0)== 'r'&&
-			value.at(1)=='o'&&
-			value.at(2)=='o'&&
-			value.at(3)=='t'))
-		{
-			return true;
-		}
-
-		return false;
+	if(isNumber(value) || isParentheses(value) || isKeyword(value) || isOperator(value)) return true;
+	else return false;
 
 }
 

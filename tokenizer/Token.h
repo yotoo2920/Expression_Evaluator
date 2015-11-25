@@ -23,6 +23,6 @@ protected:
   TokenOfType typeOfToken;
   string valueStr;
   vector<Token> initialVector;
-}
+};
 
 #endif

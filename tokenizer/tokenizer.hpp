@@ -21,6 +21,12 @@ public:
 	std::vector<std::string> &getSyntaxErrorVector();
 	bool validateOperator(std::string);
 	bool wrong_user_input;
+	bool isParentheses(char);
+	bool isParentheses(std::string);
+	bool isOperator(char);
+	bool isOperator(std::string);
+	bool isNumber(std::string);
+	bool isKeyword(std::string);
 
 };
 

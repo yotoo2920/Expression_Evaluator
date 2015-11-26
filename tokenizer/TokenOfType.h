@@ -3,7 +3,7 @@
 
 enum TokenOfType
 {
-   IntValue, RealValue, NegValue // whole, decimal, a Negative type of value
+   IntValue, RealValue, NegValue, // whole, decimal, a Negative type of value
    PlusSign, SubstSign, MultSign, DivSign, // +,-,*,/, operators
    LogValue, E_Value, PowerValue, RootValue, // Log, e^, x^n, (x)^(1/2) value
    PIvalue, // constants (add more)  maybe avogadro's # etc

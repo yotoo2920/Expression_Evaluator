@@ -16,7 +16,6 @@ class Token
 public:
   Token(TokenOfType type, string str);
   ~Token();
-  vector<Token> GetInitialVector();
   int GetPrecedence();
   AssociativityEnum GetAssociativity();
   TokenOfType GetTokenType();
@@ -25,7 +24,7 @@ public:
 private:
   TokenOfType typeOfToken;
   string valueStr;
-  vector<Token> initialVector;
+
 };
 
 #endif

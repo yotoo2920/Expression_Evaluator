@@ -18,8 +18,7 @@ public:
   TokenOfType GetTokenType();
   string GetTokenStr();
 
-
-protected:
+private:
   TokenOfType typeOfToken;
   string valueStr;
   vector<Token> initialVector;

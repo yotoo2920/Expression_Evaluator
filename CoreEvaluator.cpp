@@ -4,7 +4,6 @@
 */
 
 #include "CoreEvaluator.h"
-#include "TokenOfType.h"
 
 using namespace std;
 
@@ -18,14 +17,11 @@ CoreEvaluator::~CoreEvaluator()
   //
 }
 
-void CoreEvaluator::TokenOperations(vector<Token>& v)
+void CoreEvaluator::ShuntingOperations(vector<Token>& v)
 {
-  Token* newToken;
 
-  for (int i=0; i < v.size(); i++)
-  {
-    newToken = v[i];
-  }
+  vector<Token> unSort = v;
+
 }
 
 Token CoreEvaluator::GetToken(int index)
@@ -35,15 +31,14 @@ Token CoreEvaluator::GetToken(int index)
 
 Token CoreEvaluator::GetOperator()
 {
-  // pop operator from the stack
-  return operators->Pop();
+
 
 }
 
 void CoreEvaluator::AddToken(Token t)
 {
   // if type operator then to the stack
-  
+
 
   // if type !operator then to the queue
 
@@ -54,7 +49,7 @@ void CoreEvaluator::DeleteToken(int index)
 
 }
 
-string CoreEvaluator::backToString()
+string CoreEvaluator::backToString(Token t)
 {
 
 }

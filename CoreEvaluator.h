@@ -1,3 +1,4 @@
+
 #ifndef COREEVALUATOR_H
 #define COREEVALUATOR_H
 
@@ -7,27 +8,28 @@
 #include <queue>
 
 #include "Tokenizer.h"
+#include "TokenOfType.h"
 #include "Token.h"
 
 using namespace std;
 
-class CoreEvaluator: public Expression
+class CoreEvaluator
 {
 public:
   CoreEvaluator();
   ~CoreEvaluator();
-  void TokenOperations(vector<Token>& v);
+  vector<Token>* ShuntingOperations(vector<Token>* v);
   Token GetToken(int index);
   Token GetOperator();
-  void AddToken(Token t);
+  void AddToken(Token str);
   void DeleteToken(int index);
-  string backToString();
+  string backToString(Token t);
 
-protected:
-  queue<Token, vector<Token> >* output;
-  stack<Token, vector<Token> >* operators;
-  // vector<Token> unSorted (copy InitialVector, output from module 1);
-  vector<Token>* unSorted;
+private:
+  queue<Token>* output;
+  stack<Token>* operators;
+  // vector<Token> unSorted (copy InitialVector, output from Tokenizer);
+  vector<Token>* unSort;
   vector<Token>* Sorted;
 
 

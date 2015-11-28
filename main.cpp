@@ -1,5 +1,6 @@
 #include <iostream>
-#include "tokenizer.hpp"
+
+#include "Tokenizer.hpp"
 
 
 int main(int argc, char const *argv[])

@@ -11,13 +11,10 @@ class Expression
     Expression();
     virtual ~Expression();
     // virtual methods
-    virtual string backToString() = 0;
+    virtual string backToString() = 0; // abstract method to get any result back to string
+    virtual void Solve() = 0; // abstract method to evaluate all kind of expressions
 
-    string type;
-        //Expression();
-        //virtual ~Expression();
-    protected:
-    private:
+  private:
 };
 
 #endif // EXPRESSION_H

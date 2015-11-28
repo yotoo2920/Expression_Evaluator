@@ -3,9 +3,10 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
-#include "tokenizer.hpp"
 
+#include "Tokenizer.hpp"
 
+using namespace std;
 
 Tokenizer::Tokenizer()
 {
@@ -17,13 +18,13 @@ Tokenizer::~Tokenizer()
 
 }
 
-std::string Tokenizer::getUserInput()
+string Tokenizer::getUserInput()
 {
 
-	std::cout << "Input: ";
-	std::string input;
-	std::getline(std::cin, input);
-	std::cout << std::endl;
+	cout << "Input: ";
+	string input;
+	getline(cin, input);
+	cout << endl;
 	return input;
 
 }
@@ -33,7 +34,7 @@ bool Tokenizer::isParentheses(char c) {
 	else return false;
 }
 
-bool Tokenizer::isParentheses(std::string token) {
+bool Tokenizer::isParentheses(string token) {
 	if(token == "(" || token ==")") return true;
 	else return false;
 }
@@ -43,24 +44,24 @@ bool Tokenizer::isOperator(char c) {
 	else return false;
 }
 
-bool Tokenizer::isOperator(std::string token) {
+bool Tokenizer::isOperator(string token) {
 	if(token == "+" || token == "-" || token == "*" || token == "/" || token == "^") return true;
 	else return false;
 }
 
-bool Tokenizer::isKeyword(std::string token) {
+bool Tokenizer::isKeyword(string token) {
 	if(token == "sin" || token == "cos" || token == "tan" || token == "log" || token == "root") return true;
 	else return false;
 }
 
-bool Tokenizer::isNumber(std::string token) {
+bool Tokenizer::isNumber(string token) {
 	bool hasDecimal = false;
 	for(int i = 0; i < token.size(); i++) {
 		if(hasDecimal) {
-			if(!std::isdigit(token[i])) return false;
+			if(!isdigit(token[i])) return false;
 		}
 		else {
-			if(!std::isdigit(token[i]) && token[i] != '.') return false;
+			if(!isdigit(token[i]) && token[i] != '.') return false;
 			if(token[i] == '.') {
 				if (i == token.size() - 1) return false;
 				hasDecimal = true;
@@ -70,10 +71,10 @@ bool Tokenizer::isNumber(std::string token) {
 	return true;
 }
 
-void Tokenizer::parseInput(std::string input)
+void Tokenizer::parseInput(string input)
 {
-// takes entire string that user inputs and breaks it using operators and parentheses as delimiters. (The delimiters are also stored as tokens). 
-	std::string token = "";
+// takes entire string that user inputs and breaks it using operators and parentheses as delimiters. (The delimiters are also stored as tokens).
+	string token = "";
 	char c;
 	for(int i = 0; i < input.size(); i++) {
 		c = input[i];
@@ -90,20 +91,20 @@ void Tokenizer::parseInput(std::string input)
 				this->tokens.push_back(token);
 				this->tokens.push_back("*");
 				token = "";
-			} 
+			}
 		}
-		else if(!std::isspace(c)){
+		else if(!isspace(c)){
 			token += c;
 		}
 	}
 	if(token != "") this->tokens.push_back(token);
-// if there is something to push, do this 
+// if there is something to push, do this
 if(!this->tokens.empty())
 {
 	for (int i = 0; i < this->tokens.size(); ++i) // iterate through vector
 	{
 		if(!Tokenizer::validateOperator(this->tokens.at(i))) // if one of string is not validate push to syntax error vector
-		{	
+		{
 			this->syntax_errors.push_back(this->tokens.at(i)); // pushing to syntax error vector
 
 			this->tokens.erase(this->tokens.begin()+i);
@@ -117,28 +118,22 @@ if(!this->tokens.empty())
 
 }
 
-std::vector<std::string> &Tokenizer::getTokenVector()
+vector<string> &Tokenizer::getTokenVector()
 {
 	return this->tokens;
 }
 
-std::vector<std::string> &Tokenizer::getSyntaxErrorVector()
+vector<string> &Tokenizer::getSyntaxErrorVector()
 {
 
 	return this->syntax_errors;
 
 }
 
-bool Tokenizer::validateOperator(std::string value)
+bool Tokenizer::validateOperator(string value)
 {
 
 	if(isNumber(value) || isParentheses(value) || isKeyword(value) || isOperator(value)) return true;
 	else return false;
 
 }
-
-
-
-
-
-

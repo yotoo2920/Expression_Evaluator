@@ -1,9 +1,18 @@
 #ifndef NUMBER_H
 #define NUMBER_H
+<<<<<<< HEAD
 #include<string>
 #include"Expression.h"
+=======
+
+#include <string>
+>>>>>>> 524d1514a7d3c7af05cb76e6803e458a22d511ec
 #include <iostream>
+
+#include "Expression.h"
+
 using namespace std;
+<<<<<<< HEAD
 class number: public Expression
 {
     public:
@@ -53,4 +62,20 @@ protected:
 
 
 
+=======
+
+class Number
+{
+    public:
+      Number(long long int mants ,int expt);
+      void power(long long &mant ,int &power);
+      void printNumber();
+
+    private:
+      long long int mantissa;
+      int exponent;
+};
+
+
+>>>>>>> 524d1514a7d3c7af05cb76e6803e458a22d511ec
 #endif // NUMBER_H

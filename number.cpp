@@ -4,34 +4,38 @@
 
 using namespace std;
 
+number(long long int mants ,int expt)
+{
+  mantissa = mants;
+  exponent = expt;
+}
+
 void printNumber()
 {
   if (exponent > 0)
   {
-    int ten=10;
-
+    long long ten = 10;
     power(ten,exponent);
 
-    cout << mantissa / ten << ".";
+    cout << mantissa/ten << ".";
 
     int temp = ten;
-    while((temp / mantissa) > 9)
+    while((temp/mantissa) > 9)
     {
-      cout << "0";
-      temp = temp/10;
+        cout << "0";
+        temp=temp/10;
     }
     cout << mantissa%ten;
   }
-  else cout << mantissa;
+  else
+    cout << mantissa;
 }
 
-void power(int &mant ,int &power)
+void power(long long &mant ,int &power)
 {
-  int newNumber=mant;
-
+  long long newNumber=mant;
   for (int i=0;i<power-1;i++)
   {
     mant=mant*newNumber;
   }
-
 }

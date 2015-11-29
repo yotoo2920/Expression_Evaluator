@@ -11,15 +11,14 @@ using namespace std;
 class Number
 {
     public:
-      void power(int& ,int&);
+      Number(long long int mants ,int expt);
+      void power(long long &mant ,int &power);
       void printNumber();
 
     private:
-      int mantissa;
+      long long int mantissa;
       int exponent;
 };
-
-
 
 
 #endif // NUMBER_H

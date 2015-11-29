@@ -4,13 +4,13 @@
 
 using namespace std;
 
-number(long long int mants ,int expt)
+Number::Number(long long int mants ,int expt)
 {
   mantissa = mants;
   exponent = expt;
 }
 
-void printNumber()
+void Number::printNumber()
 {
   if (exponent > 0)
   {
@@ -31,7 +31,7 @@ void printNumber()
     cout << mantissa;
 }
 
-void power(long long &mant ,int &power)
+void Number::power(long long &mant ,int &power)
 {
   long long newNumber=mant;
   for (int i=0;i<power-1;i++)

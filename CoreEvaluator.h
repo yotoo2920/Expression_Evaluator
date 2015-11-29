@@ -7,32 +7,32 @@
 #include <stack>
 #include <queue>
 
-#include "Tokenizer.h"
-#include "TokenOfType.h"
-#include "Token.h"
+//#include "Tokenizer.h"
+//#include "TokenOfType.h"
+//#include "Token.h"
 
 using namespace std;
 
 class CoreEvaluator
 {
-public:
-  CoreEvaluator();
-  ~CoreEvaluator();
-  vector<Token>* ShuntingOperations(vector<Token>* v);
-  Token GetToken(int index);
-  Token GetOperator();
-  void AddToken(Token str);
-  void DeleteToken(int index);
-  string backToString(Token t);
+  private:
+    queue<Token>* toQueue;
+    stack<Token>* toStack;
+    // vector<Token> unSorted (copy InitialVector, output from Tokenizer);
+    vector<Token>* toUnSort;
+    vector<Token>* toSorted;
 
-private:
-  queue<Token>* output;
-  stack<Token>* operators;
-  // vector<Token> unSorted (copy InitialVector, output from Tokenizer);
-  vector<Token>* unSort;
-  vector<Token>* Sorted;
-
-
+  public:
+    CoreEvaluator();
+    ~CoreEvaluator();
+    // testing
+    //void ShuntingOperations(vector<Token>& v);
+    vector<Token>* ShuntingOperations(vector<Token>* v);
+    Token GetToken(int index);
+    Token GetOperator();
+    void AddToken(Token t);
+    void DeleteToken(int index);
+    string backToString(Token t);
 };
 
 #endif

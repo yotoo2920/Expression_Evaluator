@@ -2,14 +2,14 @@
 #define TOKENIZER_H_
 #include <vector>
 #include <string>
-
+#include "Token.h"
 class Tokenizer
 {
 
 private: 
-	std::vector<std::string> tokens;
-	std::vector<std::string> syntax_errors;
-
+	std::vector<Token> tokens;
+	std::vector<Token> syntax_errors;
+	void addToken(std::string);
 public:
 
 	Tokenizer();
@@ -17,8 +17,8 @@ public:
 
 	std::string getUserInput();
 	void parseInput(std::string);
-	std::vector<std::string> &getTokenVector();
-	std::vector<std::string> &getSyntaxErrorVector();
+	std::vector<Token> &getTokenVector();
+	std::vector<Token> &getSyntaxErrorVector();
 	bool validateOperator(std::string);
 	bool wrong_user_input;
 	bool isParentheses(char);
@@ -27,7 +27,6 @@ public:
 	bool isOperator(std::string);
 	bool isNumber(std::string);
 	bool isKeyword(std::string);
-
 };
 
 #endif

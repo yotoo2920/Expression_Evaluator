@@ -1,23 +1,28 @@
+
 #ifndef NUMBER_H
 #define NUMBER_H
 
 #include <string>
-
 #include <iostream>
+///#include"Expression.h"
 
 using namespace std;
 
-class Number
+class Number///: public Expression
 {
-    public:
-      Number();
-      Number(long long int mants ,int expt);
-      void power(long long &mant ,int &power);
-      void printNumber();
+  public:
+    int mantissa=0;
+    int exponent ;
+    string strToNum;
 
-    //private:
-      long long int mantissa;
-      int exponent;
+  public:
+      Number(string  );
+      Number(int ,int);
+      void power(int& ,int&);
+      void converStringToNumber(string& str);
+      void power(int&  ,int);
+      void printNumber();
+      void reduceNumber();
 };
 
 #endif // NUMBER_H

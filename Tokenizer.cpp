@@ -43,13 +43,9 @@ bool Tokenizer::isOperator(char c) {
 	else return false;
 }
 
-<<<<<<< HEAD:tokenizer/tokenizer.cpp
+
 bool Tokenizer::isOperator(std::string token) {
 	if(token == "+" || token == "-" || token == "*" || token == "/" || token == "^" || token == ",") return true;
-=======
-bool Tokenizer::isOperator(string token) {
-	if(token == "+" || token == "-" || token == "*" || token == "/" || token == "^") return true;
->>>>>>> 5c343ac9d51ed00da6d082571cbd98fe2651a416:Tokenizer.cpp
 	else return false;
 }
 
@@ -61,14 +57,9 @@ bool Tokenizer::isKeyword(string token) {
 bool Tokenizer::isNumber(string token) {
 	bool hasDecimal = false;
 	for(int i = 0; i < token.size(); i++) {
-<<<<<<< HEAD:tokenizer/tokenizer.cpp
 		if(i == 0 && token[i] == '-') continue;
 		else if(hasDecimal) {
 			if(!std::isdigit(token[i])) return false;
-=======
-		if(hasDecimal) {
-			if(!isdigit(token[i])) return false;
->>>>>>> 5c343ac9d51ed00da6d082571cbd98fe2651a416:Tokenizer.cpp
 		}
 		else {
 			if(!isdigit(token[i]) && token[i] != '.') return false;
@@ -81,15 +72,42 @@ bool Tokenizer::isNumber(string token) {
 	return true;
 }
 
-<<<<<<< HEAD:tokenizer/tokenizer.cpp
-void addToken(std:string token) {
+
+void Tokenizer::addToken(string token) {
+	if(isNumber(token)) {
+		if(token[0] == '-') tokens.push_back(Token(NegValue,token));
+		else {
+			bool hasDecimal = false;
+			for(int i = 0; i < token.size(); i++) {
+				if(token[i] == '.') {
+					hasDecimal = true;
+					break;
+				}
+			}
+			if(hasDecimal) tokens.push_back(Token(RealValue,token));
+			else tokens.push_back(Token(IntValue,token));
+			
+		}
+	}
+	else if(token == "(") tokens.push_back(Token(OpenPar,token));
+	else if(token == ")") tokens.push_back(Token(ClosePar,token));
+	else if (token == "sin") tokens.push_back(Token(sinFunc,token));
+	else if(token == "cos") tokens.push_back(Token(cosFunc,token));
+	else if(token == "tan") tokens.push_back(Token(tanFunc,token));
+	else if(token == "log") tokens.push_back(Token(LogFunc,token));
+	else if(token == "root") tokens.push_back(Token(RootFunc,token));
+	else if(token == "+") tokens.push_back(Token(PlusSign,token));
+	else if(token == "-") tokens.push_back(Token(SubstSign,token));
+	else if(token == "*") tokens.push_back(Token(MultSign,token));
+	else if(token == "/") tokens.push_back(Token(DivSign,token));
+	else if(token == "^") tokens.push_back(Token(PowerFunc,token));
+	else if(token == ",") tokens.push_back(Token(None,token));
+	else tokens.push_back(Token(Error,token));
 	
 }
 
-void Tokenizer::parseInput(std::string input)
-=======
 void Tokenizer::parseInput(string input)
->>>>>>> 5c343ac9d51ed00da6d082571cbd98fe2651a416:Tokenizer.cpp
+
 {
 // takes entire string that user inputs and breaks it using operators and parentheses as delimiters. (The delimiters are also stored as tokens).
 	string token = "";
@@ -97,27 +115,27 @@ void Tokenizer::parseInput(string input)
 	for(int i = 0; i < input.size(); i++) {
 		c = input[i];
 		if(isOperator(c) || isParentheses(c)) {
-			if(token != "") this->tokens.push_back (token);
+			if(token != "") addToken(token);
 			token = c;
 			if(c == '-') {
 				if(i > 0 && i < input.size()-2 && input[i-1] == '(') continue;
 				else if(i < input.size() - 1 && islower(input[i+1])) {
-					tokens.push_back("-1");
-					tokens.push_back("*");
+					addToken("-1");
+					addToken("*");
 					token = "";
 				} 
 				else {
-					tokens.push_back(token);
+					addToken(token);
 					token = "";
 				}
 			}
 			else if (c == ')' && i < input.size() - 1 && !isOperator(input[i+1]) && !isspace(input[i+1])) {
-				tokens.push_back(token);
-				this->tokens.push_back("*");
+				addToken(token);
+				addToken("*");
 				token = "";
 			}  
 			else {
-				this->tokens.push_back (token);
+				addToken(token);
 				token = "";
 			}
 			
@@ -125,8 +143,8 @@ void Tokenizer::parseInput(string input)
 		else if(i < input.size() - 1 && isdigit(c)) {
 			token += c;
 			if(input[i+1] == '(' || input[i+1] >= 'a' && input[i+1] <= 'z' ) {
-				this->tokens.push_back(token);
-				this->tokens.push_back("*");
+				addToken(token);
+				addToken("*");
 				token = "";
 			}
 		}
@@ -134,13 +152,13 @@ void Tokenizer::parseInput(string input)
 			token += c;
 		}
 	}
-	if(token != "") this->tokens.push_back(token);
+	if(token != "") addToken(token);
 // if there is something to push, do this
 if(!this->tokens.empty())
 {
 	for (int i = 0; i < this->tokens.size(); ++i) // iterate through vector
 	{
-		if(!Tokenizer::validateOperator(this->tokens.at(i))) // if one of string is not validate push to syntax error vector
+		if(!Tokenizer::validateOperator(this->tokens.at(i).GetTokenStr())) // if one of string is not validate push to syntax error vector
 		{
 			this->syntax_errors.push_back(this->tokens.at(i)); // pushing to syntax error vector
 
@@ -155,12 +173,12 @@ if(!this->tokens.empty())
 
 }
 
-vector<string> &Tokenizer::getTokenVector()
+vector<Token> &Tokenizer::getTokenVector()
 {
 	return this->tokens;
 }
 
-vector<string> &Tokenizer::getSyntaxErrorVector()
+vector<Token> &Tokenizer::getSyntaxErrorVector()
 {
 
 	return this->syntax_errors;

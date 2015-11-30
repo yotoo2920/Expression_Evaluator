@@ -1,35 +1,32 @@
 #ifndef TOKENIZER_H_
 #define TOKENIZER_H_
-
 #include <vector>
 #include <string>
-
-using namespace std;
-
+#include "Token.h"
 class Tokenizer
 {
 
-private:
-	vector<string> tokens;
-	vector<string> syntax_errors;
-
+private: 
+	std::vector<Token> tokens;
+	std::vector<Token> syntax_errors;
+	void addToken(std::string);
 public:
 
-	vector<string> &getTokenVector();
-	vector<string> &getSyntaxErrorVector();
 	Tokenizer();
 	~Tokenizer();
-	string getUserInput();
-	void parseInput(string);
-	bool validateOperator(string);
+
+	std::string getUserInput();
+	void parseInput(std::string);
+	std::vector<Token> &getTokenVector();
+	std::vector<Token> &getSyntaxErrorVector();
+	bool validateOperator(std::string);
 	bool wrong_user_input;
 	bool isParentheses(char);
-	bool isParentheses(string);
+	bool isParentheses(std::string);
 	bool isOperator(char);
-	bool isOperator(string);
-	bool isNumber(string);
-	bool isKeyword(string);
-
+	bool isOperator(std::string);
+	bool isNumber(std::string);
+	bool isKeyword(std::string);
 };
 
 #endif

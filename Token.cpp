@@ -29,7 +29,7 @@ int Token::GetPrecedence()
 {
   if (typeOfToken == ClosePar || typeOfToken == OpenPar )
    return 5;
-  if (typeOfToken == PowerValue)
+  if (typeOfToken == PowerFunc)
     return 4;
   if (typeOfToken == MultSign || typeOfToken == DivSign)
     return 3;
@@ -43,7 +43,7 @@ int Token::GetPrecedence()
 // only relevant for operators "will be use during the shunting yard"
 AssociativityEnum Token::GetAssociativity()
 {
-  if (typeOfToken == PowerValue) // power value ^
+  if (typeOfToken == PowerFunc) // power value ^
    return Right;
 
    return Left;  // add, sub, mult, div

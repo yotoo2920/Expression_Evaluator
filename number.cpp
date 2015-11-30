@@ -5,6 +5,12 @@
 
 using namespace std;
 
+Number::Number()
+{
+  mantissa = 0;
+  exponent = 0;
+}
+
 Number::Number(long long int mants ,int expt)
 {
   mantissa = mants;

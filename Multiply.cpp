@@ -1,6 +1,8 @@
 #include <iostream>
+
 #include "Multiply.h"
-#include "number.h"
+#include "Number.h"
+
 using namespace std;
 
 void Multiply::setLeft(number lval)

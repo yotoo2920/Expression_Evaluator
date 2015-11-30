@@ -14,6 +14,7 @@ class Token
 {
 
 public:
+  Token(); // strValue = "" and typeOfToken = None
   Token(TokenOfType type, string str);
   ~Token();
   int GetPrecedence();

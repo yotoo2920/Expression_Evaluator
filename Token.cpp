@@ -7,16 +7,21 @@
 
 using namespace std;
 
+Token::Token()
+{
+  valueStr = " ";
+  typeOfToken = None;
+}
+
 Token::Token(TokenOfType type, string str)
 {
   this->valueStr = str;
   this->typeOfToken = type;
-  
 }
 
 Token::~Token()
 {
-  
+
 }
 
 // hierarchy of tokens, looking the precedence "will be use during the shunting yard"
@@ -52,4 +57,3 @@ TokenOfType Token::GetTokenType()
 string Token::GetTokenStr() {
 	return this->valueStr;
 }
-

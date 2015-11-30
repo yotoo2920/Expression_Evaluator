@@ -10,11 +10,12 @@ using namespace std;
 class Number
 {
     public:
+      Number();
       Number(long long int mants ,int expt);
       void power(long long &mant ,int &power);
       void printNumber();
 
-    private:
+    //private:
       long long int mantissa;
       int exponent;
 };

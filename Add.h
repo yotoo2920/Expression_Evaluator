@@ -1,17 +1,19 @@
 #ifndef ADD_H
 #define ADD_H
-#include "number.h"
+
+#include "Number.h"
 
 using namespace std;
 
 class Add
 {
-private:
-	long long magnitude;
-	int decimal;
-public:
-	Add();
-	number getSum(number leftValue, number rightValue);
+	private:
+		long long magnitude;
+		int decimal;
+
+	public:
+		Add();
+		Number* getSum(Number* leftValue, Number* rightValue);
 };
 
 #endif // ADD_H

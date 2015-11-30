@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 
-=======
 #include <string>
 
 #include "Number.h"
@@ -42,4 +40,3 @@ void Number::power(long long &mant ,int &power)
     mant=mant*newNumber;
   }
 }
->>>>>>> 524d1514a7d3c7af05cb76e6803e458a22d511ec

@@ -1,15 +1,19 @@
 #ifndef TOKENIZER_H_
 #define TOKENIZER_H_
+
 #include <vector>
 #include <string>
+
 #include "Token.h"
+
 class Tokenizer
 {
 
-private: 
+private:
 	std::vector<Token> tokens;
 	std::vector<Token> syntax_errors;
 	void addToken(std::string);
+
 public:
 
 	Tokenizer();

@@ -1,28 +1,19 @@
 #include <iostream>
-
 #include "Multiply.h"
 #include "Number.h"
 
 using namespace std;
 
-void Multiply::setLeft(number lval)
+Multiply::Multiply()
 {
-    leftValue = lval.mantissa;
-    leftDec = lval.exponent;
+	//empty constructor
 }
 
-void Multiply::setRight(number rval)
+Number* Multiply::getProduct(Number* leftValue, Number* rightValue)
 {
-    rightValue = rval.mantissa;
-    rightDec = rval.exponent;
-}
+	magnitude = leftValue->mantissa * rightValue->mantissa;
+	decimal = leftValue->exponent + rightValue->exponent;
 
-void Multiply::getMagnitude()
-{
-    result.mantissa = leftValue * rightValue;
-}
-
-void Multiply::getDecimal()
-{
-    result.exponent = leftDec + rightDec;
+	Number* x = new Number(magnitude, decimal);
+	return x;
 }

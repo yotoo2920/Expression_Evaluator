@@ -1,7 +1,6 @@
 #include <iostream>
-
 #include "Add.h"
-
+#include "Number.h"
 using namespace std;
 
 Add::Add()
@@ -25,7 +24,6 @@ Number* Add::getSum(Number* leftValue, Number* rightValue)
 	decimal = leftValue->exponent + rightValue->exponent;
 
 	Number* n = new Number(magnitude, decimal);
-
 	return n;
 
 }

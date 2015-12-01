@@ -1,29 +1,17 @@
 #ifndef MULTIPLY_H
 #define MULTIPLY_H
-
 #include "Number.h"
-#include "Expression.h"
 
 using namespace std;
 
 class Multiply
 {
-	private:
-		long long leftValue;
-		long long rightValue;
-		int leftDec;
-		int rightDec;
-
-	public:
-	    number result;
-	    Multiply()
-	    {
-
-	    }
-	    void setLeft(number);
-			void setRight(number);
-	    void getMagnitude();
-	    void getDecimal();
-	};
+private:
+	long long magnitude;
+	int decimal;
+public:
+    Multiply();
+    Number* getProduct(Number* leftValue, Number* rightValue);    
+};
 
 #endif // MULTIPLY_H

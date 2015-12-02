@@ -21,8 +21,8 @@ public:
 
 	std::string getUserInput();
 	void parseInput(std::string);
-	std::vector<Token> &getTokenVector();
-	std::vector<Token> &getSyntaxErrorVector();
+	std::vector<Token> getTokenVector();
+	std::vector<Token> getSyntaxErrorVector();
 	bool validateOperator(std::string);
 	bool wrong_user_input;
 	bool isParentheses(char);

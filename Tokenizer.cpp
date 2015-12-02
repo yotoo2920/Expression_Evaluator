@@ -189,12 +189,12 @@ if(!this->tokens.empty())
 
 }
 
-vector<Token> &Tokenizer::getTokenVector()
+vector<Token> Tokenizer::getTokenVector()
 {
 	return this->tokens;
 }
 
-vector<Token> &Tokenizer::getSyntaxErrorVector()
+vector<Token> Tokenizer::getSyntaxErrorVector()
 {
 
 	return this->syntax_errors;

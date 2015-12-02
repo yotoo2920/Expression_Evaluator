@@ -57,7 +57,7 @@ bool Tokenizer::isKeyword(string token) {
 bool Tokenizer::isNumber(string token) {
 	bool hasDecimal = false;
 	for(int i = 0; i < token.size(); i++) {
-		if(i == 0 && token[i] == '-') continue;
+		if(token.size()> 1 && i == 0 && token[i] == '-') continue;
 		else if(hasDecimal) {
 			if(!std::isdigit(token[i])) return false;
 		}

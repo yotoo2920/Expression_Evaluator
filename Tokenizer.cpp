@@ -39,13 +39,13 @@ bool Tokenizer::isParentheses(string token) {
 }
 
 bool Tokenizer::isOperator(char c) {
-	if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == ',') return true;
+	if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == ',' || c == '!') return true;
 	else return false;
 }
 
 
 bool Tokenizer::isOperator(std::string token) {
-	if(token == "+" || token == "-" || token == "*" || token == "/" || token == "^" || token == ",") return true;
+	if(token == "+" || token == "-" || token == "*" || token == "/" || token == "^" || token == "," || token == "!") return true;
 	else return false;
 }
 
@@ -101,7 +101,8 @@ void Tokenizer::addToken(string token) {
 	else if(token == "*") tokens.push_back(Token(MultSign,token));
 	else if(token == "/") tokens.push_back(Token(DivSign,token));
 	else if(token == "^") tokens.push_back(Token(PowerFunc,token));
-	else if(token == ",") tokens.push_back(Token(None,token));
+	else if(token == ",") tokens.push_back(Token(Comma,token));
+	else if(token == "!") tokens.push_back(Token(FactFunc,token));
 	else tokens.push_back(Token(Error,token));
 	
 }
@@ -166,7 +167,22 @@ if(!this->tokens.empty())
 
 			this->wrong_user_input = true;
 		}
-
+		/*else if(tokens[i].GetTokenStr() == ",") {
+			if(i<3 || i > tokens.size()-2) { 
+				wrong_user_input = true;
+				syntax_errors.push_back(tokens[i]);
+			}
+			else {
+				if((tokens[i-3].GetTokenStr() == "root" || tokens[i-3].GetTokenStr() == "log") && tokens[i-2].GetTokenStr() == "(" && isNumber(tokens[i-1].GetTokenStr()) && isNumber(tokens[i+1].GetTokenStr()) && tokens[i+2].GetTokenStr() == ")") {
+					tokens.erase(tokens.begin()+i);
+				}
+				else {
+				wrong_user_input = true;
+				syntax_errors.push_back(tokens[i]);
+			}
+			}
+			
+		} */
 	}
 
 }

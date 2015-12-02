@@ -10,6 +10,7 @@ enum TokenOfType
    PIvalue, // constants (add more)  maybe avogadro's # etc
    OpenPar, ClosePar, // open and close parenthesis
    Error, // token with an error to be added to syntax_error vector
+	Comma, //argument seperator , 
    None // for an empty new token
 };
 

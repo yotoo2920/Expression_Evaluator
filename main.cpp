@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
   for (int i=0; i < SortedVector->size(); i++)
 	{
 		cout << SortedVector->at(i)->GetTokenStr();
-		cout << " " << endl;
+		cout << " ";
 	}
 	cout << " " << endl;
 
@@ -46,7 +46,6 @@ int main(int argc, char const *argv[])
 
 	// Then evaluate expression
 
-	//-------------------------------------------------------------------------------------------------
 
 	return 0;
 }

@@ -1,15 +1,14 @@
 #include <iostream>
-
-#include "Add.h"
-
+#include "Subtract.h"
+#include "Number.h"
 using namespace std;
 
-Add::Add()
+Subtract::Subtract()
 {
 	//empty constructor
 }
 
-Number* Add::getSum(Number* leftValue, Number* rightValue)
+Number* Subtract::getDifference(Number* leftValue, Number* rightValue)
 {
 	for(int i = 0; i < rightValue->exponent; i++)
 	{
@@ -21,11 +20,10 @@ Number* Add::getSum(Number* leftValue, Number* rightValue)
 		rightValue->mantissa = rightValue->mantissa * 10;
 	}
 
-	magnitude = leftValue->mantissa + rightValue->mantissa;
+	magnitude = leftValue->mantissa - rightValue->mantissa;
 	decimal = leftValue->exponent + rightValue->exponent;
 
-	Number* n = new Number(magnitude, decimal);
-
-	return n;
+	Number* m = new Number(magnitude, decimal);
+	return m;
 
 }

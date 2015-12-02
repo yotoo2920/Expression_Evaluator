@@ -1,7 +1,9 @@
 #include <iostream>
 
 #include "Tokenizer.hpp"
+#include "CoreEvaluator.h"
 
+using namespace std;
 
 int main(int argc, char const *argv[])
 {
@@ -10,23 +12,30 @@ int main(int argc, char const *argv[])
 
 	parser.parseInput(parser.getUserInput());
 
-	vector<Tokens>* tokens = NULL;
+	vector<Token>* unSorted;
 
 	//if you found at least one syntax error, show errors and return
-	vector<Tokens> errors = parser.getSyntaxErrorVector();
+	vector<Token> errors = parser.getSyntaxErrorVector();
 
 	// if error vector has at least one Invalid expression
-	if(errors.size > 0)
+	if(errors.size() > 0)
 	{
-		std::cout << "Invalid expression entered." << std::endl;
-		return;
+		cout << "Invalid expression entered." << endl;
+		return 0;
 	}
 
 	//If the compiler reached at this point, it means that there were no errors - aka, my expression is correct
-	tokens = parser.getTokenVector();
+	unSorted = &parser.getTokenVector();
 
-	CoreEvaluator * coreEvaluator = new CoreEvaluator();
-	vector<Tokens>* reversePolishNotationTokensVector = coreEvaluator->ShuntingOperations(tokens);
+	CoreEvaluator* coreEvaluator = new CoreEvaluator();
+	vector<Token*>* SortedVector = coreEvaluator->ShuntingOperations(unSorted);
+
+  for (int i=0; i < SortedVector->size(); i++)
+	{
+		cout << SortedVector->at(i)->GetTokenStr();
+		cout << " " << endl;
+	}
+	cout << " " << endl;
 
 	//create expression and evaluate
 
@@ -38,29 +47,6 @@ int main(int argc, char const *argv[])
 	// Then evaluate expression
 
 	//-------------------------------------------------------------------------------------------------
-
-	// testing and debbuging purpose
-	if(!parser.wrong_user_input)
-	{
-		 tokens = parser.getTokenVector();
-
-
-
-		for (int i = 0; i < tokens.size(); ++i)
-		{
-			std::cout << tokens.at(i) << " ";
-		}
-
-	}
-
-	std::cout << std::endl;
-
-	for (int i = 0; i < parser.getSyntaxErrorVector().size(); ++i)
-	{
-		std::cout << parser.getSyntaxErrorVector().at(i) << " ";
-	}
-
-	std::cout << std::endl;
 
 	return 0;
 }

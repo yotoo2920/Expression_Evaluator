@@ -20,33 +20,36 @@ CoreEvaluator::~CoreEvaluator()
 
 }
 
-queue<Token>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
+vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
 {
   if (toUnSort == NULL) throw new exception();
 
+  // vector
+  vector<Token*>* SortedVector = new vector<Token*>();
+
   // queue
-  queue<Token>* toQueue = new queue<Token>();
+  queue<Token*>* toQueue = new queue<Token*>();
 
   // stack
-  stack<Token> operators;
+  stack<Token*>* toStack = new stack<Token*>();
 
   // temp token
-  Token* tempToken = NULL;
+  Token* tempToken = 0;
 
   // iterating token by token
-  for (int i=0; i < toUnSort.size(); i++)
+  for (int i=0; i < toUnSort->size(); i++)
   {
     // 1 - reading at i
-    tempToken = toUnSort->at(i);
+    tempToken = &toUnSort->at(i);
 
     // 2 - int, real or negative values
-    if (isNumber(Token* tempToken))
+    if (isNumber(tempToken))
     {
       toQueue->push(tempToken);
     }
 
     // 3 - functions sin, cos, tan, log, e, root, factorial
-    else if (isFunction(Token* tempToken))
+    else if (isFunction(tempToken))
     {
       toStack->push(tempToken);
     }
@@ -62,8 +65,9 @@ queue<Token>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
         while (tempOpt != NULL && ((tempToken->GetAssociativity() == Left && tempToken->GetPrecedence() <= tempOpt->GetPrecedence()) || (tempToken->GetAssociativity() == Right && tempToken->GetPrecedence() < tempOpt->GetPrecedence())))
         {
           // 5.2
-          toQueue->push(toStack->pop()); // pop onto the queue
-          tempOpt = toStack->top();
+          toQueue->push(toStack->top()); // pop onto the queue
+          toStack->pop();
+		      tempOpt = toStack->top();
         }
       }
     // 5.4
@@ -71,42 +75,50 @@ queue<Token>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
     }
 
     // 6 - openPar
-    else if (tempToken->GetTokenType() == openPar)
+    else if (tempToken->GetTokenType() == OpenPar)
     {
       toStack->push(tempToken);
     }
 
     // 7 - closePar
-    else if (tempToken->GetTokenType() == closePar)
+    else if (tempToken->GetTokenType() == ClosePar)
     {
       // 7.1
       Token* tempOpt = toStack->top();
-      while (tempOpt != NULL && (!(tempOpt->GetTokenType() == openPar)))
+      while (tempOpt != NULL && (!(tempOpt->GetTokenType() == OpenPar)))
       {
-        toQueue->push(toStack->pop()); // pop onto the queue
+        toQueue->push(toStack->top()); // pop onto the queue
+		    toStack->pop();
         tempOpt = toStack->top(); // update top position in the stack
       }
       // 7.4
       if(toStack->empty())
       {
-        throw new exception("Mismatched parentheses.");
+        throw new logic_error("Mismatched parentheses.");
       }
       // 7.2
-      toStack->pop(tempOpt); // pop from the stack to nowhere
+      toStack->pop(); // pop from the stack to nowhere
     }
 
   } // end of the for
 
   while(!toStack->empty())
   {
-    if (toStack->top() == openPar || toStack->top() == closePar) // is parentheses
+    if (toStack->top()->GetTokenType() == OpenPar || toStack->top()->GetTokenType() == ClosePar) // is parentheses
     {
-      throw new exception("Mismatched parentheses.");
+      throw new logic_error("Mismatched parentheses.");
     }
-    toQueue->push(toStack->pop()); // pop onto the queue
+    toQueue->push(toStack->top()); // pop onto the queue
+	toStack->pop();
   }
 
-  return toQueue;
+  while (!toQueue->empty())
+  {
+    SortedVector->push_back(toQueue->front());
+    toQueue->pop();
+  }
+
+  return SortedVector;
 }
 
 // int, real, or negative values

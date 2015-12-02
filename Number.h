@@ -1,28 +1,30 @@
+
 #ifndef NUMBER_H
 #define NUMBER_H
 
-#include<string>
+#include <string>
 #include <iostream>
-
 ///#include"Expression.h"
 
 using namespace std;
 
 class Number///: public Expression
 {
-public:
-  int mantissa=0;
+  //private:
+  public: // these fields will be change to Private
+    int mantissa;
     int exponent ;
     string strToNum;
 
-    public:
-        Number(string  );
-        Number(int ,int);
-        void power(int& ,int&);
-void converStringToNumber(string& str);
-void power(int&  ,int);
-void printNumber();
-void reduceNumber();
+  //public:
+  	Number();
+    //Number(string &strTo);
+    Number(int ,int);
+    //void power(int& ,int&);
+    void converStringToNumber(string str);
+    void power(int&, int&);
+    void printNumber();
+    void reduceNumber();
 
 };
 

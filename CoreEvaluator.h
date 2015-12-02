@@ -9,7 +9,7 @@
 
 //#include "Tokenizer.h"
 //#include "TokenOfType.h"
-//#include "Token.h"
+#include "Token.h"
 
 using namespace std;
 
@@ -20,11 +20,10 @@ class CoreEvaluator
     bool isFunction(Token* tempToken);
     bool isNumber(Token* tempToken);
 
-
   public:
     CoreEvaluator();
     ~CoreEvaluator();
-    queue<Token>* ShuntingOperations(vector<Token>* toUnSort);
+    vector<Token*>* ShuntingOperations(vector<Token>* toUnSort);
 };
 
 #endif

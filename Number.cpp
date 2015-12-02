@@ -1,124 +1,125 @@
-#include"Number.h"
 #include <iostream>
 #include <string>
-//#include"Expression.h"
+#include <sstream>
+
+#include "Number.h"
+
+//#include "Expression.h"
 using namespace std;
 
+Number::Number()
+{
+    ///empty constructor
+}
 
 ///-------------------------------------------------------------------------------
-void Number::power(int& mant ,int &power)
+void Number::power(int& mant ,int& power)
 {
     int newNumber=mant;
 
     for (int i=0; i<power-1; i++)
     {
-        mant=mant*newNumber;
+      mant=mant*newNumber;
     }
 
 }
 
 ///------------------------------------------------------------------------------
 
-Number::Number(string &strTo) {
+/*Number::Number(string &strTo) {
 
         converStringToNumber(strTo);
 
-        /* mantissa=mants;
+         mantissa=mants;
         exponent=exp;
-        type="number";*/
+        type="number";
         }
+        */
 ///------------------------------------------------------------------------------
-Number::Number(int mants ,int exp )){
-mantissa=mants;
-exponent=exp;
-reduceNumber();
-
-
+Number::Number(int mants ,int exp )
+{
+  mantissa=mants;
+  exponent=exp;
+  reduceNumber();
 }
 
 ///--------------------------------------------------------------------------------
-void Number::printNumber(){
-if (exponent>0)
+void Number::printNumber()
 {
-int ten=10;
-power(ten,exponent);
+  if (exponent>0)
+  {
+    int ten=10;
+    power(ten,exponent);
 
-cout << mantissa/ten<<".";
-int temp=ten;
-while(temp/mantissa>9)
-{
-cout << "0";
-temp=temp/10;
-}
-cout<<mantissa%ten;
-}else cout << mantissa;
 
+    cout << mantissa/ten<<".";
+    int temp=ten;
+
+  while(temp/(mantissa%ten)>9)
+  {
+    cout << "0";
+    temp=temp/10;
+  }
+
+  cout<<mantissa%ten;
+  }
+  else cout << mantissa;
 }
 
 ///------------------------------------------------------------------------------------
-void Number::converStringToNumber(string& str){
-
-char c;
-int num1;
-int num2;
-int ten=10;
-
-if (str.find(".")==-1)
+void Number::converStringToNumber(string str)
 {
-exponent=0;
-}else {
-exponent = str.length()-str.find(".")-1;
-str=str.substr(0,str.find("."))+str.substr(str.find(".")+1,str.length()-1);
-cout << str<< endl;;
-///int i=stoi (str);
-///cout << exponent<<endl;
 
-}
-for (int i=0; i<str.length();i++)
-{
-ten=10;
+  char c;
+  int num1;
+  int num2;
+  int ten=10;
 
-c=str.at(i);
+  if (str.find(".")==-1)
+  {
+    exponent=0;
+  }
+  else
+  {
+    exponent = str.length()-str.find(".")-1;
+    str=str.substr(0,str.find("."))+str.substr(str.find(".")+1,str.length()-1);
 
+  }
 
- num1=c-'0';
+  for (int i=0; i<str.length();i++)
+  {
+    ten=10;
+    c=str.at(i);
+    num1=c-'0';
 
+    num2=str.length()-i-1;
 
- num2=str.length()-i-1;
-//cout << num2<< endl;
-if (i==str.length()-1)
-{
-ten=1;
-}
-power(ten,num2);
-num1=num1*ten;
-cout << num1<< endl;
-mantissa=mantissa+ num1;
+    if (i==str.length()-1)
+    {
+      ten=1;
+    }
+    power(ten,num2);
+    num1=num1*ten;
 
-///cout << mantissa<< endl;
+    mantissa=mantissa+ num1;
 
-
-}
+  } // end the for
 
 }
 
 ///--------------------------------------------------------------------------------
-void Number::reduceNumber(){
-while(exponent>4)
+void Number::reduceNumber()
 {
-mantissa=mantissa/10;
-exponent--;
-}
+  while(exponent>4)
+  {
+    mantissa=mantissa/10;
+    exponent--;
+  }
 
-while (mantissa%10==0){
-
-mantissa=mantissa/10;
-exponent--;
-
-}
-
-
-
-
+  while (mantissa%10==0 && exponent > 0)
+  {
+    mantissa=mantissa/10;
+    exponent--;
+  }
 
 }

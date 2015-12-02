@@ -86,7 +86,7 @@ void Tokenizer::addToken(string token) {
 			}
 			if(hasDecimal) tokens.push_back(Token(RealValue,token));
 			else tokens.push_back(Token(IntValue,token));
-			
+
 		}
 	}
 	else if(token == "(") tokens.push_back(Token(OpenPar,token));
@@ -103,7 +103,7 @@ void Tokenizer::addToken(string token) {
 	else if(token == "^") tokens.push_back(Token(PowerFunc,token));
 	else if(token == ",") tokens.push_back(Token(None,token));
 	else tokens.push_back(Token(Error,token));
-	
+
 }
 
 void Tokenizer::parseInput(string input)
@@ -123,7 +123,7 @@ void Tokenizer::parseInput(string input)
 					addToken("-1");
 					addToken("*");
 					token = "";
-				} 
+				}
 				else {
 					addToken(token);
 					token = "";
@@ -133,16 +133,16 @@ void Tokenizer::parseInput(string input)
 				addToken(token);
 				addToken("*");
 				token = "";
-			}  
+			}
 			else {
 				addToken(token);
 				token = "";
 			}
-			
+
 		}
 		else if(i < input.size() - 1 && isdigit(c)) {
 			token += c;
-			if(input[i+1] == '(' || input[i+1] >= 'a' && input[i+1] <= 'z' ) {
+			if(input[i+1] == '(' || (input[i+1] >= 'a' && input[i+1] <= 'z')) {
 				addToken(token);
 				addToken("*");
 				token = "";

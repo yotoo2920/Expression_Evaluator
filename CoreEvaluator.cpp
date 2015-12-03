@@ -57,12 +57,15 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
         // 5.1 - while operator on the top of the stack
         Token* tempOpt = toStack->top();
 
-        while (!toStack->empty() && isOperator(tempOpt) && ((tempToken->GetAssociativity() == Left && tempToken->GetPrecedence() <= tempOpt->GetPrecedence()) || (tempToken->GetAssociativity() == Right && tempToken->GetPrecedence() < tempOpt->GetPrecedence())))
+        while (!toStack->empty() && isOperator(tempOpt))
         {
-          // 5.2
-          toQueue->push(toStack->top());
-          toStack->pop();
-          tempOpt = toStack->top(); // update top position
+          if ((tempToken->GetAssociativity() == Left && tempToken->GetPrecedence() <= tempOpt->GetPrecedence()) || (tempToken->GetAssociativity() == Right && tempToken->GetPrecedence() < tempOpt->GetPrecedence()))
+          {
+            // 5.2
+            toQueue->push(toStack->top());
+            toStack->pop();
+            tempOpt = toStack->top(); // update top position
+          }
         }
       }
       // 5.4

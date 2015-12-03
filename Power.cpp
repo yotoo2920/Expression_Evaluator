@@ -6,12 +6,14 @@ using namespace std;
 
 Power::Power()
 {
-    //ctor
+    this->pow = new Number(1,0);
 }
 
 Number* Power::getPower(Number* leftValue, Number* pow)
 {
-  magnitude=1;
+  int magnitude=1;
+  int decimal=0;
+
   for (int i=0; i<pow->mantissa;i++)
   {
     magnitude*= leftValue->mantissa;

@@ -27,16 +27,19 @@ Token::~Token()
 // hierarchy of tokens, looking the precedence "will be use during the shunting yard"
 int Token::GetPrecedence()
 {
-  if (typeOfToken == ClosePar || typeOfToken == OpenPar )
+  if (typeOfToken == ClosePar || typeOfToken == OpenPar)
    return 5;
-  if (typeOfToken == PowerFunc)
+  if (typeOfToken == sinFunc || typeOfToken == cosFunc || typeOfToken ==  tanFunc || typeOfToken ==  LogFunc || typeOfToken == PowerFunc || typeOfToken ==  RootFunc || typeOfToken == FactFunc)
     return 4;
   if (typeOfToken == MultSign || typeOfToken == DivSign)
     return 3;
   if (typeOfToken == PlusSign || typeOfToken == SubstSign)
     return 2;
-  // return value for the rest of the tokens
-  return 1;
+  if (typeOfToken == IntValue || typeOfToken == RealValue || typeOfToken == NegValue || typeOfToken == PIvalue || typeOfToken == Evalue)
+    return 1;
+
+  // from here all are error or don't matter
+  return 0;
 }
 
 
@@ -44,9 +47,13 @@ int Token::GetPrecedence()
 AssociativityEnum Token::GetAssociativity()
 {
   if (typeOfToken == PowerFunc) // power value ^
-   return Right;
-
-   return Left;  // add, sub, mult, div
+  {
+    return Right;
+  }
+  else
+  {
+    return Left;  // add, sub, mult, div
+  }
 }
 
 TokenOfType Token::GetTokenType()

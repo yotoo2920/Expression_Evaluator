@@ -34,7 +34,7 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
   stack<Token*>* toStack = new stack<Token*>();
 
   // temp token
-  Token* tempToken = 0;
+  Token* tempToken;
 
   // iterating token by token
   for (int i=0; i < toUnSort->size(); i++)
@@ -48,13 +48,7 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
       toQueue->push(tempToken);
     }
 
-    // 3 - functions sin, cos, tan, log, e, root, factorial
-    else if (isFunction(tempToken))
-    {
-      toStack->push(tempToken);
-    }
-
-    // 5 - an operator +,-,*,/,power ^
+    // 5 - an operator +,-,*,/,power ^, sin, cos, tan, factorial, log, root
     else if (isOperator(tempToken))
     {
       // if the stack is not empty
@@ -62,16 +56,17 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
       {
         // 5.1 - while operator on the top of the stack
         Token* tempOpt = toStack->top();
-        while (tempOpt != NULL && ((tempToken->GetAssociativity() == Left && tempToken->GetPrecedence() <= tempOpt->GetPrecedence()) || (tempToken->GetAssociativity() == Right && tempToken->GetPrecedence() < tempOpt->GetPrecedence())))
+
+        while (!toStack->empty() && isOperator(tempOpt) && ((tempToken->GetAssociativity() == Left && tempToken->GetPrecedence() <= tempOpt->GetPrecedence()) || (tempToken->GetAssociativity() == Right && tempToken->GetPrecedence() < tempOpt->GetPrecedence())))
         {
           // 5.2
-          toQueue->push(toStack->top()); // pop onto the queue
+          toQueue->push(toStack->top());
           toStack->pop();
-		      tempOpt = toStack->top();
+          tempOpt = toStack->top(); // update top position
         }
       }
-    // 5.4
-    toStack->push(tempToken);
+      // 5.4
+      toStack->push(tempToken);
     }
 
     // 6 - openPar
@@ -85,7 +80,7 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
     {
       // 7.1
       Token* tempOpt = toStack->top();
-      while (tempOpt != NULL && (!(tempOpt->GetTokenType() == OpenPar)))
+      while (!toStack->empty() && tempOpt->GetTokenType() != OpenPar)
       {
         toQueue->push(toStack->top()); // pop onto the queue
 		    toStack->pop();
@@ -99,6 +94,15 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
       // 7.2
       toStack->pop(); // pop from the stack to nowhere
     }
+    else
+    {
+      string str = tempToken->GetTokenStr();
+
+      // clean memory
+
+      //trow exception
+      throw runtime_error( str + " is not a valid argument");
+    }
 
   } // end of the for
 
@@ -109,9 +113,10 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
       throw new logic_error("Mismatched parentheses.");
     }
     toQueue->push(toStack->top()); // pop onto the queue
-	toStack->pop();
+	  toStack->pop();
   }
 
+  // passing token by token from the queue to the Sorted vector
   while (!toQueue->empty())
   {
     SortedVector->push_back(toQueue->front());
@@ -130,11 +135,5 @@ bool CoreEvaluator::isNumber(Token* tempToken)
 // is operators
 bool CoreEvaluator::isOperator(Token* tempToken)
 {
-  return (tempToken->GetTokenType() == PlusSign || tempToken->GetTokenType() == SubstSign || tempToken->GetTokenType() ==  MultSign || tempToken->GetTokenType() ==  DivSign || tempToken->GetTokenType() == PowerFunc);
-}
-
-// is functions
-bool CoreEvaluator::isFunction(Token* tempToken)
-{
-  return (tempToken->GetTokenType() == sinFunc || tempToken->GetTokenType() == cosFunc || tempToken->GetTokenType() == tanFunc || tempToken->GetTokenType() == LogFunc || tempToken->GetTokenType() == E_Func || tempToken->GetTokenType() == RootFunc || tempToken->GetTokenType() == FactFunc);
+  return (tempToken->GetTokenType() == PlusSign || tempToken->GetTokenType() == SubstSign || tempToken->GetTokenType() ==  MultSign || tempToken->GetTokenType() ==  DivSign || tempToken->GetTokenType() == PowerFunc || tempToken->GetTokenType() == sinFunc || tempToken->GetTokenType() == cosFunc || tempToken->GetTokenType() == tanFunc || tempToken->GetTokenType() == LogFunc || tempToken->GetTokenType() == RootFunc || tempToken->GetTokenType() == FactFunc);
 }

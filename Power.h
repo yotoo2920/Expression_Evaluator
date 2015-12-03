@@ -8,11 +8,13 @@ using namespace std;
 class Power
 {	
 private:
+	
 	Multiply* mult;
-	Number* pow = new Number(1,0);
+	Number* pow;
+
 public:
 	Power();
-	Number* getPower(Number* base, int exp);
+	Number* getPower(Number* base, Number* exp);
 };
 
 #endif // POWER_H

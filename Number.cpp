@@ -46,16 +46,20 @@ Number::Number(int mants ,int exp )
 ///--------------------------------------------------------------------------------
 void Number::printNumber()
 {
+
   if (exponent>0)
   {
     int ten=10;
     power(ten,exponent);
-
-
+	
     cout << mantissa/ten<<".";
-    int temp=ten;
-
-  while(temp/(mantissa%ten)>9)
+    int temp=ten;		
+	if(mantissa < 0)
+	{
+		mantissa = mantissa * -1;
+	}
+	
+  while(temp/(mantissa%ten)>10)		//changed this from 9 to 10
   {
     cout << "0";
     temp=temp/10;

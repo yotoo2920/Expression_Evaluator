@@ -6,15 +6,15 @@
 using namespace std;
 
 class Power
-{	
+{
 private:
+	long long magnitude;
+	int decimal;
 	
-	Multiply* mult;
-	Number* pow;
 
 public:
 	Power();
-	Number* getPower(Number* base, Number* exp);
+	Number* getPower(Number* leftValue, Number* pow);
 };
 
 #endif // POWER_H

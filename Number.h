@@ -11,17 +11,17 @@ class Number///: public Expression
 {
   //private:
   public: // these fields will be change to Private
-    int mantissa;
-    int exponent ;
+    long long int mantissa;
+    long long int exponent ;
     string strToNum;
 
   //public:
   	Number();
     //Number(string &strTo);
-    Number(int ,int);
+    Number(long long int ,long long int);
     //void power(int& ,int&);
     void converStringToNumber(string str);
-    void power(int&, int&);
+    void power(long long int&, long long int&);
     void printNumber();
     void reduceNumber();
 

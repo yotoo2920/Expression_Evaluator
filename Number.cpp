@@ -12,7 +12,7 @@ Number::Number()
     ///empty constructor
 }
 
-Number::Number(int mants ,int exp )
+Number::Number(long long int mants ,long long int exp )
 {
   mantissa = mants;
   exponent = exp;
@@ -25,11 +25,11 @@ void Number::printNumber()
 
   if (exponent>0)
   {
-    int ten=10;
+    long long int ten=10;
     power(ten,exponent);
 
     cout << mantissa/ten<<".";
-    int temp=ten;
+    long long int temp=ten;
 	if(mantissa < 0)
 	{
 		mantissa = mantissa * -1;
@@ -51,9 +51,9 @@ void Number::converStringToNumber(string str)
 {
 
   char c;
-  int num1;
-  int num2;
-  int ten = 10;
+  long long int num1;
+  long long int num2;
+  long long int ten = 10;
 
   if (str.find(".") == -1)
   {
@@ -86,9 +86,9 @@ void Number::converStringToNumber(string str)
   } // end the for
 }
 
-void Number::power(int& mant ,int& power)
+void Number::power(long long int& mant ,long long int& power)
 {
-  int newNumber = mant;
+  long long int newNumber = mant;
   for (int i=0; i < power-1; i++)
   {
     mant = mant * newNumber;

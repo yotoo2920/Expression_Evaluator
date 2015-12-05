@@ -12,20 +12,13 @@ Factorial::Factorial()
 
 Number* Factorial::getFactorial(Number* fact)
 {
-	if(fact->exponent != 0)
+	magnitude = 1;
+	for(int i = 1; i <= fact->mantissa; i++)
 	{
-		throw invalid_argument("We are not accepting factorials with decimals");
+		magnitude = magnitude * i;
 	}
-	else
-	{
-		magnitude = 1;
-		for(int i = 1; i <= fact->mantissa; i++)
-		{
-			magnitude = magnitude * i;
-		}
-		decimal = 0;
-	}
-
+	decimal = 0;
+	
 	Number* zz = new Number(magnitude, decimal);
 	return zz;
 }

@@ -83,7 +83,7 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
                     break;
                 }
 
-                if (tempOpt->GetTokenType() != LogFunc)
+                if (tempOpt->GetTokenType() == sinFunc || tempOpt->GetTokenType() == cosFunc || tempOpt->GetTokenType() == tanFunc || tempOpt->GetTokenType() == PowerFunc || tempOpt->GetTokenType() == FactFunc)
                 {
                     cout << "Invalid expression entered." << endl;
                     while (!toQueue->empty())

@@ -7,8 +7,6 @@
 #include <stack>
 #include <queue>
 
-//#include "Tokenizer.h"
-//#include "TokenOfType.h"
 #include "Token.h"
 
 using namespace std;

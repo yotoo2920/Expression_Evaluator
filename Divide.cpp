@@ -45,14 +45,11 @@ Number* Divide::getDividend(Number* leftValue, Number* rightValue)
 
 		}
 	}
-	cout << magnitude << endl;
-	
+if (leftValue->exponent>0)
+{
 
-	if(leftValue->exponent > 0)
-	{
-		decimal += leftValue->exponent;
-	}
-	cout << decimal << endl;
+decimal +=leftValue->exponent;
+}
 	Number* y = new Number(magnitude, decimal);
 	return y;
 }

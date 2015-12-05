@@ -1,53 +1,46 @@
+#include <string>
+#include <vector>
 #include <iostream>
 
-#include "Tokenizer.hpp"
-#include "CoreEvaluator.h"
+#include "UserInterface.h"
 
 using namespace std;
 
-int main()
+int main(int argc, char const *argv[])
 {
+	UserInterface* user = new UserInterface();
+	cout << endl;
+	cout<< "Welcome to Calculator" << endl;
+	cout << endl;
+	cout << "H = Help   OR" << "   O = Off" << endl;
+	cout << "-----------------------------" << endl;
+	cout << endl;
+	char choice;
+	while(choice != 'o'){
+		user->Test();
 
-	Tokenizer parser;
+		cin >> choice;
 
-	parser.parseInput(parser.getUserInput());
+		switch(choice){
+			case 'h':
+				user->Menu();
+				break;
 
-	vector<Token>* unSorted;
+			case 'H':
+				user->Menu();
+				break;
 
-	//if you found at least one syntax error, show errors and return
-	vector<Token> errors = parser.getSyntaxErrorVector();
+			case 'r':
+				break;
 
-	// if error vector has at least one Invalid expression
-	if(errors.size() > 0)
-	{
-		cout << "Invalid expression entered." << endl;
-		return 0;
+			case 'o':
+				cout << "Goodbye!" << endl;
+				break;
+
+			case 'O':
+				cout << "Goodbye!" << endl;
+				break;
+		}
 	}
-
-	//If the compiler reached at this point, it means that there were no errors - aka, my expression is correct
-	unSorted = &parser.getTokenVector();
-
-	CoreEvaluator* coreEvaluator = new CoreEvaluator();
-	vector<Token*>* SortedVector = coreEvaluator->ShuntingOperations(unSorted);
-
-  for (int i=0; i < SortedVector->size(); i++)
-	{
-		cout << SortedVector->at(i)->GetTokenStr();
-		cout << " ";
-	}
-	cout << " " << endl;
-
-	//create expression and evaluate
-
-	// We can have an ExpressionHandler class, which is going to have a function that,
-	// given reversePolishNotationTokensVector will
-
-	// returns only one expression.
-
-	// Then evaluate expression
-
-	
-
-
 	return 0;
 }

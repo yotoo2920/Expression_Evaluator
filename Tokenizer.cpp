@@ -11,11 +11,12 @@ using namespace std;
 Tokenizer::Tokenizer()
 {
 	this->wrong_user_input = false;
+	parenCheck = 0;
 }
 
 Tokenizer::~Tokenizer()
 {
-	parenCheck = 0;
+	
 }
 
 string Tokenizer::getUserInput()
@@ -149,6 +150,11 @@ void Tokenizer::parseInput(string input)
 				addToken(token);
 				token = "";
 			}
+			
+			if(parenCheck < 0) {
+				wrong_user_input = true;
+			syntax_errors.push_back(Token(ClosePar,")"));
+			}
 
 		}
 		else if(i < input.size() - 1 && isdigit(c)) {
@@ -176,6 +182,45 @@ if(!this->tokens.empty())
 			this->tokens.erase(this->tokens.begin()+i);
 
 			this->wrong_user_input = true;
+		}
+		
+		if(i == 0 || i == tokens.size() - 1) {
+			if(isOperator(tokens[i].GetTokenStr())) {
+				if(i == 0) {
+					wrong_user_input = true;
+					syntax_errors.push_back(tokens[i]);
+				} 
+				if(i == tokens.size() -1 && tokens[i].GetTokenStr() != "!") {
+					wrong_user_input = true;
+					syntax_errors.push_back(tokens[i]);
+				}
+
+			}
+		}
+		
+		if(i < tokens.size() -1 && tokens[i].GetTokenStr() == "(" && tokens[i+1].GetTokenStr() == ")") {
+			wrong_user_input = true;
+			syntax_errors.push_back(tokens[i]);
+		}
+		
+		if(i < tokens.size() -1 && isOperator(tokens[i].GetTokenStr()) && isOperator(tokens[i+1].GetTokenStr()) && tokens[i].GetTokenStr() != "!") {
+			wrong_user_input = true;
+			syntax_errors.push_back(tokens[i]);
+		}
+		
+		if(i > 0 && i < tokens.size() - 1 && isOperator(tokens[i].GetTokenStr()) && tokens[i-1].GetTokenStr() == "(" && tokens[i+1].GetTokenStr() == ")") {
+			wrong_user_input = true;
+			syntax_errors.push_back(tokens[i]);
+		}
+		
+		if(i > 0 && isOperator(tokens[i].GetTokenStr()) && tokens[i].GetTokenStr() != "-" && tokens[i-1].GetTokenStr() == "(") {
+			wrong_user_input = true;
+			syntax_errors.push_back(tokens[i]);
+		}
+		
+		if(i < tokens.size() - 1 && isOperator(tokens[i].GetTokenStr()) && tokens[i].GetTokenStr() != "!" && tokens[i+1].GetTokenStr() == ")") {
+			wrong_user_input = true;
+			syntax_errors.push_back(tokens[i]);
 		}
 		
 	}

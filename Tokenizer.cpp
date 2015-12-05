@@ -50,7 +50,7 @@ bool Tokenizer::isOperator(std::string token) {
 }
 
 bool Tokenizer::isKeyword(string token) {
-	if(token == "sin" || token == "cos" || token == "tan" || token == "log" || token == "root" || token == "pi" || token == "e") return true;
+	if(token == "sin" || token == "cos" || token == "tan" || token == "log" || token == "root" || token == "PI" || token == "e") return true;
 	else return false;
 }
 
@@ -109,8 +109,10 @@ void Tokenizer::addToken(string token) {
 	else if(token == "^") tokens.push_back(Token(PowerFunc,token));
 	else if(token == ",") tokens.push_back(Token(Comma,token));
 	else if(token == "!") tokens.push_back(Token(FactFunc,token));
-	else if(token == "pi") tokens.push_back(Token(PIvalue,token));
-	else if(token == "e") tokens.push_back(Token(Evalue,token));
+	else if(token == "PI") tokens.push_back(Token(RealValue,"3.1415"));
+	else if(token == "e") tokens.push_back(Token(RealValue,"2.7183"));
+	else if(token =="-PI") tokens.push_back(Token(NegValue,"-3.1415"));
+	else if(token == "-e") tokens.push_back(Token(NegValue,"-2.7183"));
 	else tokens.push_back(Token(Error,token));
 
 }
@@ -128,7 +130,7 @@ void Tokenizer::parseInput(string input)
 			token = c;
 			if(c == '-') {
 				if(i > 0 && i < input.size()-2 && input[i-1] == '(') continue;
-				else if(i < input.size() - 1 && islower(input[i+1])) {
+				else if(i < input.size() - 1 && isalpha(input[i+1])) {
 					addToken("-1");
 					addToken("*");
 					token = "";
@@ -151,7 +153,7 @@ void Tokenizer::parseInput(string input)
 		}
 		else if(i < input.size() - 1 && isdigit(c)) {
 			token += c;
-			if(input[i+1] == '(' || (input[i+1] >= 'a' && input[i+1] <= 'z')) {
+			if(input[i+1] == '(' || (input[i+1] >= 'a' && input[i+1] <= 'z') || (input[i+1] >= 'A' && input[i+1] <= 'Z')) {
 				addToken(token);
 				addToken("*");
 				token = "";

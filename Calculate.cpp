@@ -72,7 +72,7 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
 		}
 	}
  calculationStack.top()->printNumber();
- cout << endl;
+ //cout << endl;
 }
 
 void Calculate::addTwoNumbers(vector<Token*>* sortedList,int& i,stack <Number*>& calculationStack){
@@ -118,13 +118,12 @@ void Calculate::divTwoNumbers(vector<Token*>* sortedList,int& i,stack <Number*>&
 
 void Calculate::powNumbers(vector<Token*>* sortedList,int& i,stack <Number*>& calculationStack){
 
-n1=calculationStack.top();
-		calculationStack.pop();
-
-		n2=calculationStack.top();
-		calculationStack.pop();
-		powNum=pow->getPower(n2,n1);
-        calculationStack.push(powNum);
+  n1=calculationStack.top();
+	calculationStack.pop();
+	n2=calculationStack.top();
+	calculationStack.pop();
+	powNum=pow->getPower(n2,n1);
+  calculationStack.push(powNum);
 }
 
 void Calculate::factNumbers(vector<Token*>* sortedList,int& i,stack <Number*>& calculationStack){

@@ -16,8 +16,17 @@ Number* Divide::getDividend(Number* leftValue, Number* rightValue)
 	{
 		throw invalid_argument("You can't divide by zero");
 	}
+    if (rightValue->exponent>0)
+    {
+    for (int i=0; i<rightValue->exponent;i++)
+    {
+    leftValue->mantissa*=10;
+    }
 
+
+    }
 	magnitude = leftValue->mantissa / rightValue->mantissa;
+
 
 	if(leftValue->mantissa % rightValue->mantissa == 0)
 	{
@@ -29,12 +38,21 @@ Number* Divide::getDividend(Number* leftValue, Number* rightValue)
 		while(leftValue->mantissa % rightValue->mantissa != 0 && decimal < 5)
 		{
 			magnitude *= 10;
+
 			leftValue->mantissa = (leftValue->mantissa % rightValue->mantissa) * 10;
 			magnitude += leftValue->mantissa / rightValue->mantissa;
-			decimal++; 
+			decimal++;
+
 		}
 	}
+	cout << magnitude << endl;
+	
 
+	if(leftValue->exponent > 0)
+	{
+		decimal += leftValue->exponent;
+	}
+	cout << decimal << endl;
 	Number* y = new Number(magnitude, decimal);
 	return y;
 }

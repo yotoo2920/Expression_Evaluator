@@ -21,7 +21,7 @@ Number* Power::getPower(Number* leftValue, Number* pow)
       magnitude=magnitude/10;
       decimal--;
     }
-    while (magnitude%10==0 && magnitude > 0)
+    while (magnitude%10==0 && decimal > 0)
     {
       magnitude=magnitude/10;
       decimal--;

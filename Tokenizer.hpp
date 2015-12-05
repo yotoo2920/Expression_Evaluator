@@ -10,6 +10,7 @@ class Tokenizer
 {
 
 private:
+	int parenCheck;
 	std::vector<Token> tokens;
 	std::vector<Token> syntax_errors;
 	void addToken(std::string);

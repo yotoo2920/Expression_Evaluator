@@ -15,7 +15,7 @@ Tokenizer::Tokenizer()
 
 Tokenizer::~Tokenizer()
 {
-
+	parenCheck = 0;
 }
 
 string Tokenizer::getUserInput()
@@ -50,7 +50,7 @@ bool Tokenizer::isOperator(std::string token) {
 }
 
 bool Tokenizer::isKeyword(string token) {
-	if(token == "sin" || token == "cos" || token == "tan" || token == "log" || token == "root") return true;
+	if(token == "sin" || token == "cos" || token == "tan" || token == "log" || token == "root" || token == "pi" || token == "e") return true;
 	else return false;
 }
 
@@ -89,8 +89,14 @@ void Tokenizer::addToken(string token) {
 
 		}
 	}
-	else if(token == "(") tokens.push_back(Token(OpenPar,token));
-	else if(token == ")") tokens.push_back(Token(ClosePar,token));
+	else if(token == "(")  {
+		tokens.push_back(Token(OpenPar,token));
+		parenCheck++;
+	}
+	else if(token == ")") {
+		tokens.push_back(Token(ClosePar,token));
+		parenCheck--;
+	}
 	else if (token == "sin") tokens.push_back(Token(sinFunc,token));
 	else if(token == "cos") tokens.push_back(Token(cosFunc,token));
 	else if(token == "tan") tokens.push_back(Token(tanFunc,token));
@@ -103,6 +109,8 @@ void Tokenizer::addToken(string token) {
 	else if(token == "^") tokens.push_back(Token(PowerFunc,token));
 	else if(token == ",") tokens.push_back(Token(Comma,token));
 	else if(token == "!") tokens.push_back(Token(FactFunc,token));
+	else if(token == "pi") tokens.push_back(Token(PIvalue,token));
+	else if(token == "e") tokens.push_back(Token(Evalue,token));
 	else tokens.push_back(Token(Error,token));
 
 }
@@ -130,7 +138,7 @@ void Tokenizer::parseInput(string input)
 					token = "";
 				}
 			}
-			else if (c == ')' && i < input.size() - 1 && !isOperator(input[i+1]) && !isspace(input[i+1])) {
+			else if (c == ')' && i < input.size() - 1 && !isOperator(input[i+1]) && !isspace(input[i+1]) && input[i+1] != ')') {
 				addToken(token);
 				addToken("*");
 				token = "";
@@ -167,24 +175,11 @@ if(!this->tokens.empty())
 
 			this->wrong_user_input = true;
 		}
-		/*else if(tokens[i].GetTokenStr() == ",") {
-			if(i<3 || i > tokens.size()-2) { 
-				wrong_user_input = true;
-				syntax_errors.push_back(tokens[i]);
-			}
-			else {
-				if((tokens[i-3].GetTokenStr() == "root" || tokens[i-3].GetTokenStr() == "log") && tokens[i-2].GetTokenStr() == "(" && isNumber(tokens[i-1].GetTokenStr()) && isNumber(tokens[i+1].GetTokenStr()) && tokens[i+2].GetTokenStr() == ")") {
-					tokens.erase(tokens.begin()+i);
-				}
-				else {
-				wrong_user_input = true;
-				syntax_errors.push_back(tokens[i]);
-			}
-			}
-			
-		} */
+		
 	}
-
+	if(parenCheck != 0) wrong_user_input = true;
+	if(parenCheck > 0) syntax_errors.push_back(Token(OpenPar,"("));
+	if(parenCheck < 0) syntax_errors.push_back(Token(ClosePar,")"));
 }
 
 }

@@ -13,6 +13,7 @@ class UserInterface
 {
 	public:
 		UserInterface();
+		void Welcome();
 		void Menu();
 		void Test();
 };

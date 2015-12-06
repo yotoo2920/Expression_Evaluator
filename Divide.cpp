@@ -30,8 +30,6 @@ tempValue->exponent = leftValue->exponent;
     }
 
 	magnitude = leftValue->mantissa / rightValue->mantissa;
-	cout << "leftValue mantissa == " << leftValue->mantissa << endl;
-	cout << "rightValue exponent == " << rightValue->exponent << endl;
 
 	if(leftValue->mantissa % rightValue->mantissa == 0)
 	{

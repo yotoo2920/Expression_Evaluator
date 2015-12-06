@@ -21,8 +21,7 @@ Tokenizer::~Tokenizer()
 
 string Tokenizer::getUserInput()
 {
-	cin.clear();
-	cin.ignore(256,'\n');
+	
 	cout << "Input: ";
 	string input = " ";
 	getline(cin, input);
@@ -131,7 +130,7 @@ void Tokenizer::parseInput(string input)
 			if(token != "") addToken(token);
 			token = c;
 			if(c == '-') {
-				if(i > 0 && i < input.size()-2 && input[i-1] == '(') continue;
+				if(i > 0 && i < input.size()-2 && input[i-1] == '(' && !isalpha(input[i+1])) continue;
 				else if(i < input.size() - 1 && isalpha(input[i+1])) {
 					addToken("-1");
 					addToken("*");
@@ -214,7 +213,7 @@ if(!this->tokens.empty())
 			syntax_errors.push_back(tokens[i]);
 		}
 		
-		if(i > 0 && isOperator(tokens[i].GetTokenStr()) && tokens[i].GetTokenStr() != "-" && tokens[i-1].GetTokenStr() == "(") {
+		if(i > 0 && isOperator(tokens[i].GetTokenStr()) && tokens[i-1].GetTokenStr() == "(") {
 			wrong_user_input = true;
 			syntax_errors.push_back(tokens[i]);
 		}

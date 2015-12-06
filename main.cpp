@@ -8,38 +8,62 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
+	
 	UserInterface* user = new UserInterface();
+	bool in = true;
+
 	cout << endl;
 	cout<< "Welcome to Calculator" << endl;
-	cout << endl;
-	cout << "H = Help   OR" << "   O = Off" << endl;
-	cout << "-----------------------------" << endl;
-	cout << endl;
-	char choice;
-	while(choice != 'o'){
-		user->Test();
+   
+	while(in)
+	{
+		cout << endl;
+		cout << "C = Calculate 'OR' H = Help   'OR'   O = Off" << endl;
+		cout << "--------------------------------------------" << endl;
+		cout << endl;
 
+		char choice;
 		cin >> choice;
+		if (cin.fail())
+		{
+			cout << "Wrong choice, try again please.";
+			cin.clear();
+		}
 
-		switch(choice){
-			case 'h':
-				user->Menu();
-				break;
+		if (choice == 'C')
+		{
+			// if you reached this point then user input is a math expression
+			
+			user->Test();
+		}
+		else if (choice == 'c')
+		{
+            
+			// if you reached this point then user input is a math expression
+			user->Test();
+		}
+		else if (choice == 'h')
+		{
+			user->Menu();
+			cin.clear();
+		}
+		else if (choice == 'H')
+		{
+			user->Menu();
+			cin.clear();
+		}
+		else if (choice == 'o')
+		{
+			in = false;
+			cout << "Goodbye!" << endl;
+			cout << endl;
+		}
+		else if (choice == 'O')
+		{
+			in = false;
+			cout << "Goodbye!" << endl;
+			cout << endl;
 
-			case 'H':
-				user->Menu();
-				break;
-
-			case 'r':
-				break;
-
-			case 'o':
-				cout << "Goodbye!" << endl;
-				break;
-
-			case 'O':
-				cout << "Goodbye!" << endl;
-				break;
 		}
 	}
 	return 0;

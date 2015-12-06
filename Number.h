@@ -11,8 +11,8 @@ class Number
     Number();
     //Number(string &strTo);
     Number(double);
-    Number(int ,int);
-    int mantissa;
+    Number(long long int ,long long int);
+    long long int mantissa;
     int exponent ;
   string strToNum;
     void converStringToNumber(string str);

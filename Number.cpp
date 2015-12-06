@@ -12,17 +12,24 @@ Number::Number()
     ///empty constructor
 }
 
+Number::Number(long long int mants ,long long int exp )
+{
+  mantissa=mants;
+  exponent=exp;
+  reduceNumber();
+}
+
 Number::Number(double number)
 {
   // Make number object from double
-  // Method overloading to enter a double into this constructor 
-  // This will convert the number to a string and find  a "." to truncate 
+  // Method overloading to enter a double into this constructor
+  // This will convert the number to a string and find  a "." to truncate
 
   std:string number_as_string = std::to_string(number);
 
    std::string truncated_number = "";
 
-  // If value as string is greater than 15, crop it 
+  // If value as string is greater than 15, crop it
 
    if(number_as_string.size() > 15)
    {
@@ -40,7 +47,7 @@ Number::Number(double number)
    unsigned decimal_number_count = 0;
    bool found_dot = false;
 
-   // Find the whole number part and the decimal part of the number, and count 
+   // Find the whole number part and the decimal part of the number, and count
    for (int i = 0; i < truncated_number.size(); ++i)
    {
      if(truncated_number.at(i) == '.')
@@ -84,12 +91,7 @@ void Number::power(int& mant ,int& power)
 
 }
 
-Number::Number(int mants ,int exp )
-{
-  mantissa=mants;
-  exponent=exp;
-  reduceNumber();
-}
+
 
 void Number::printNumber()
 {
@@ -178,8 +180,8 @@ void Number::reduceNumber()
 double Number::power(double base ,int exponent)
 {
 
-  // this is another method overload to return as a double, useful for Sin.cpp   
-  // Is same thing as above but instead of void, it is double 
+  // this is another method overload to return as a double, useful for Sin.cpp
+  // Is same thing as above but instead of void, it is double
 
   double power = 1;
 
@@ -195,7 +197,7 @@ double Number::power(double base ,int exponent)
 
 double Number::asDouble()
 {
-  // returns number as double 
+  // returns number as double
 
   if (exponent>0)
   {
@@ -203,7 +205,7 @@ double Number::asDouble()
     power(ten,exponent);
 
     return mantissa/double(ten);
-    
+
     int temp=ten;
   if (mantissa<0)
   {

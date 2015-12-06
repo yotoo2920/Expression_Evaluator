@@ -8,8 +8,14 @@
 
 using namespace std;
 
+UserInterface::UserInterface()
+{
+
+}
+
 void UserInterface::Test()
 {
+
 	Tokenizer parser;
 
 	parser.parseInput(parser.getUserInput());
@@ -23,6 +29,7 @@ void UserInterface::Test()
 	if(errors.size() > 0)
 	{
 	std::cout << "Invalid expression entered." << std::endl;
+	return;
 	//return 0;
 	}
 
@@ -34,7 +41,9 @@ void UserInterface::Test()
 	vector<Token*>* SortedVector = coreEvaluator->ShuntingOperations(unSorted);
 
 	Calculate* C = new Calculate();
-  C->getCalcultation(SortedVector);
+    C->getCalcultation(SortedVector);
+
+	cout << endl;
 
 	for (int i=0; i < SortedVector->size(); i++)
 	{
@@ -71,6 +80,19 @@ void UserInterface::Menu(){
 	std::cout << std::endl;
 
 }
-UserInterface::UserInterface(){
 
+void UserInterface::Welcome()
+{
+	cout << endl;
+	cout << "H = Help   OR" << "   O = Off" << endl;
+	cout << "-----------------------------" << endl;
+	cout << endl;
+
+	char choice;
+	cin >> choice;
+	if (cin.fail())
+	{
+		cout << "Wrong choice, try again please.";
+		cin.clear();
+	}
 }

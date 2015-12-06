@@ -21,10 +21,11 @@ Tokenizer::~Tokenizer()
 
 string Tokenizer::getUserInput()
 {
-
-	std::cout << "Input: ";
-	std::string input;
-	std::getline(std::cin, input);
+	cin.clear();
+	cin.ignore(256,'\n');
+	cout << "Input: ";
+	string input = " ";
+	getline(cin, input);
 	return input;
 
 }

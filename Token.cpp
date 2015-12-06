@@ -29,7 +29,7 @@ int Token::GetPrecedence()
 {
   if (typeOfToken == ClosePar || typeOfToken == OpenPar)
    return 5;
-  if (typeOfToken == sinFunc || typeOfToken == cosFunc || typeOfToken ==  tanFunc || typeOfToken ==  LogFunc || typeOfToken == PowerFunc || typeOfToken ==  RootFunc || typeOfToken == FactFunc)
+  if (typeOfToken == sinFunc || typeOfToken == cosFunc || typeOfToken ==  tanFunc || typeOfToken ==  LogFunc || typeOfToken == PowerFunc || typeOfToken ==  RootFunc || typeOfToken == FactFunc || typeOfToken == secFunc || typeOfToken == cscFunc || typeOfToken == cotFunc || typeOfToken == lnFunc)
     return 4;
   if (typeOfToken == MultSign || typeOfToken == DivSign)
     return 3;

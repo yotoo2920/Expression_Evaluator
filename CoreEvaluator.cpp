@@ -83,7 +83,7 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
                     break;
                 }
 
-                if (tempOpt->GetTokenType() == sinFunc || tempOpt->GetTokenType() == cosFunc || tempOpt->GetTokenType() == tanFunc || tempOpt->GetTokenType() == PowerFunc || tempOpt->GetTokenType() == FactFunc)
+                if (tempOpt->GetTokenType() == sinFunc || tempOpt->GetTokenType() == cosFunc || tempOpt->GetTokenType() == tanFunc || tempOpt->GetTokenType() == PowerFunc || tempOpt->GetTokenType() == FactFunc || tempOpt->GetTokenType() == secFunc || tempOpt->GetTokenType() == cscFunc || tempOpt->GetTokenType() == cotFunc || tempOpt->GetTokenType() == lnFunc)
                 {
                     cout << "Invalid expression entered." << endl;
                     while (!toQueue->empty())
@@ -207,5 +207,5 @@ bool CoreEvaluator::isNumber(Token* tempToken)
 // is operators
 bool CoreEvaluator::isOperator(Token* tempToken)
 {
-    return (tempToken->GetTokenType() == PlusSign || tempToken->GetTokenType() == SubstSign || tempToken->GetTokenType() ==  MultSign || tempToken->GetTokenType() ==  DivSign || tempToken->GetTokenType() == PowerFunc || tempToken->GetTokenType() == sinFunc || tempToken->GetTokenType() == cosFunc || tempToken->GetTokenType() == tanFunc || tempToken->GetTokenType() == LogFunc || tempToken->GetTokenType() == RootFunc || tempToken->GetTokenType() == FactFunc);
+    return (tempToken->GetTokenType() == PlusSign || tempToken->GetTokenType() == SubstSign || tempToken->GetTokenType() ==  MultSign || tempToken->GetTokenType() ==  DivSign || tempToken->GetTokenType() == PowerFunc || tempToken->GetTokenType() == sinFunc || tempToken->GetTokenType() == cosFunc || tempToken->GetTokenType() == tanFunc || tempToken->GetTokenType() == LogFunc || tempToken->GetTokenType() == RootFunc || tempToken->GetTokenType() == FactFunc || tempToken->GetTokenType() == secFunc || tempToken->GetTokenType() == cscFunc || tempToken->GetTokenType() == cotFunc || tempToken->GetTokenType() == lnFunc);
 }

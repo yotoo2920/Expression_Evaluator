@@ -2,7 +2,7 @@
 #include "Sine.h"
 #include "Number.h"
 
-#define PI 3.14159265359 
+#define PI 3.14159265359  // using pi value to be passed to radToDegrees and degToRadian 
 
 Sine::Sine()
 {
@@ -17,6 +17,9 @@ Number* Sine::getSine(Number* value)
 
 		Number* to_return = new Number(0,0);
 
+		// normalizing the anlge in order to pass a proper digit to the Talor Series. 
+		// It becomes impossible for the series to receive a value large enough as it cannot converge it. 
+		// normalizeAngle reduces this factor and makes it feasible for Sine to be evaluated 
 		double number = Sine::normalizeAngle(value->asDouble());
 
 		// Create a new instance of number to use in the for loop
@@ -24,8 +27,10 @@ Number* Sine::getSine(Number* value)
 
 		bool is_subtracting = true;		
 
-		// Iterate throught this foor loop utilizing Taylor Series == x - ( x^3 / 3! ) + ( x^5 / 5! ) - ( x^7 / 7! ) ... 
-		// I have a bool to kepp count of the positive and negative part of the sum
+		// Iterate throught loop utilizing Taylor Series == x - ( x^3 / 3! ) + ( x^5 / 5! ) - ( x^7 / 7! ) ... 
+		// It becomes impossible for facotial to keep track of a factorial larger than 20!, so I keep it under 10 iterations 
+
+		// I have a bool to keep count of the positive and negative part of the sum
 
 		for(int i = 3; i <= 20; i = i + 2)
 		{

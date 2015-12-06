@@ -7,11 +7,15 @@ using namespace std;
 
 Divide::Divide()
 {
-	//empty constructor
+	tempValue = new Number();
 }
 
 Number* Divide::getDividend(Number* leftValue, Number* rightValue)
 {
+decimal = 0;
+tempValue->mantissa = leftValue->mantissa;
+tempValue->exponent = leftValue->exponent;
+
 	if(rightValue->mantissa == 0)
 	{
 		throw invalid_argument("You can't divide by zero");
@@ -23,10 +27,11 @@ Number* Divide::getDividend(Number* leftValue, Number* rightValue)
     leftValue->mantissa*=10;
     }
 
-
     }
-	magnitude = leftValue->mantissa / rightValue->mantissa;
 
+	magnitude = leftValue->mantissa / rightValue->mantissa;
+	cout << "leftValue mantissa == " << leftValue->mantissa << endl;
+	cout << "rightValue exponent == " << rightValue->exponent << endl;
 
 	if(leftValue->mantissa % rightValue->mantissa == 0)
 	{
@@ -43,13 +48,19 @@ Number* Divide::getDividend(Number* leftValue, Number* rightValue)
 			magnitude += leftValue->mantissa / rightValue->mantissa;
 			decimal++;
 
+
 		}
 	}
-if (leftValue->exponent>0)
-{
 
-decimal +=leftValue->exponent;
-}
+	if(leftValue->exponent > 0)
+	{
+		decimal += leftValue->exponent;
+	}
+
+leftValue->mantissa = tempValue->mantissa;
+leftValue->exponent = tempValue->exponent;
+
 	Number* y = new Number(magnitude, decimal);
+
 	return y;
 }

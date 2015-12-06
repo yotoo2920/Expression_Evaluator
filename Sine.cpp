@@ -1,22 +1,12 @@
 #include <iostream>
 #include "Sine.h"
 #include "Number.h"
-#include "Power.h"
-#include "Factorial.h"
-#include "Add.h"
-#include "Subtract.h"
 
-
-#ifndef ABS
-	#define abs(number) number*-1
-#endif
+#define PI 3.14159265359 
 
 Sine::Sine()
 {
-	this->exponentiator = new Power();
-	this->factorializer = new Factorial();
-	this->adder = new Add();
-	this->subtractor = new Subtract();
+
 }
 
 Sine::~Sine(){}
@@ -24,87 +14,104 @@ Sine::~Sine(){}
 Number* Sine::getSine(Number* value)
 { 
 
-	// double to_get_sine_of = 0;
-	// int decimal_value = 0;
-	// double sine_of_number = 0;
-	// int final_mantissa;
-
-
-	//if exponent is less than 0, which means we have floating point number
-	// in disguise, perform this 
-
 
 		Number* to_return = new Number(0,0);
 
-		// decimal_value = (this->power_calculator->getPower(new Number(10,0),
-		// 				new Number(abs(value->exponent), 0)))->mantissa;
+		double number = Sine::normalizeAngle(value->asDouble());
 
-		// // Returns value with correct decimal placed 
-		// //This is the number we wanna get the sine of 
-		// to_get_sine_of = double(value->mantissa / decimal_value);
+		// Create a new instance of number to use in the for loop
+		double number_to_keep = number;
 
-		// // Returns sine of number in non mantissa form. So with decimal approximation
+		bool is_subtracting = true;		
 
-		// sine_of_number = to_get_sine_of;
+		// Iterate throught this foor loop utilizing Taylor Series == x - ( x^3 / 3! ) + ( x^5 / 5! ) - ( x^7 / 7! ) ... 
+		// I have a bool to kepp count of the positive and negative part of the sum
 
-		bool is_subtracting = true;
-
-		// //Presetting the sine calculation to 100 iterations
-		// for (int i = 1; i <= 100; i+=2)
-		// {
-
-		// 	if(is_subtracting)
-		// 	{
-		// 		sine_of_number = sine_of_number - this->power_calculator->getPower(value, new Number(i,0))
-		// 		is_subtracting = false;
-		// 	}
-
-		// 	else if(!is_subtracting)
-		// 	{
-
-
-		// 		is_subtracting = true;
-		// 	}
-
-		// 	sine_of_number = i this->factorial_calculator
-		// }
-
-		// // Returns the sine in mantissa form, no decimal in final mantissa 
-		// final_mantissa = int((pow(10,abs(value->exponent)))*sine_of_number);
-
-		// return new Number(final_mantissa,value->exponent); 
-
-		for(int i = 1; i < 100; i+=2)
+		for(int i = 3; i <= 20; i = i + 2)
 		{
+
+			double power = Sine::power(number_to_keep,i);
+			double factorial = Sine::factorial(i);
+
 			if(is_subtracting)
 			{
-				to_return = this->subtractor->getDifference(
-					value, this->exponentiator->getPower(value, new Number(i,0))
-					);
+				
+				number -= (power/factorial); 
 
 				is_subtracting = false;
+
+				continue;
+
 			}
 
-			else if(!is_subtracting)
+			if(!is_subtracting)
 			{
-				to_return = this->adder->getSum(
-					value, this->exponentiator->getPower(value, new Number(i,0))
-					);
+				
+				number += (power/factorial); 
 
 				is_subtracting = true;
+
 			}
 
 		}
 
-		return to_return;
+		return new Number(number);
 
 	}
 
-	// //When exponent is greater than or equal to zero 
-	// // Take sin of value in mantissa form 
-	// new_value = sin(value->mantissa);
+// Custom factorial class to hold long value 
+unsigned long long Sine::factorial(int number)
+{
+	if(number == 1 || number == 0) return 1;
 
-	// //cast into int and multiply this value by 10^5
-	// final_mantissa = int(new_value * pow(10,5));
+	else
+	{ 
+		return number * Sine::factorial(number - 1);
+	}
+}
 
-	// return new Number(final_mantissa, -5);
+// Custom power class to support double for sine
+double Sine::power(double base ,int exponent)
+{
+	double power = 1;
+
+    for (int i=0; i<exponent; i++)
+    {
+     	power=power*base;
+    }
+
+    return power;
+
+}
+
+// Need to crop the number for that is passed to sine, so convert from rad to degrees 
+double Sine::radToDegrees(double radians)
+{
+
+	return radians * (180 / PI);
+
+}
+
+// Convert degrees to Radians 
+double Sine::degToRadian(double degrees)
+{
+
+	return degrees * (PI / 180);
+}
+
+// normalize the angle by subtracting the angle of the given degree from above function 
+double Sine::normalizeAngle(double angle)
+{
+	double temp_angle = Sine::radToDegrees(angle);
+	
+	while(temp_angle > 360)
+	{
+		temp_angle -= 360;
+	}
+
+	return degToRadian(temp_angle);
+}
+
+
+
+

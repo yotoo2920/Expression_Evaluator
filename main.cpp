@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-
+#include <sstream>
 #include "UserInterface.h"
 
 using namespace std;
@@ -22,48 +22,48 @@ int main(int argc, char const *argv[])
 		cout << "--------------------------------------------" << endl;
 		cout << endl;
 
-		char choice;
+		string choice;
 		cin >> choice;
-		if (cin.fail())
-		{
-			cout << "Wrong choice, try again please.";
-			cin.clear();
-		}
 
-		if (choice == 'C')
+		if (choice == "C")
 		{
 			// if you reached this point then user input is a math expression
 			
 			user->Test();
 		}
-		else if (choice == 'c')
+		else if (choice == "c")
 		{
             
 			// if you reached this point then user input is a math expression
 			user->Test();
 		}
-		else if (choice == 'h')
+		else if (choice == "h")
 		{
 			user->Menu();
 			cin.clear();
 		}
-		else if (choice == 'H')
+		else if (choice == "H")
 		{
 			user->Menu();
 			cin.clear();
 		}
-		else if (choice == 'o')
+		else if (choice == "o")
 		{
 			in = false;
 			cout << "Goodbye!" << endl;
 			cout << endl;
 		}
-		else if (choice == 'O')
+		else if (choice == "O")
 		{
 			in = false;
 			cout << "Goodbye!" << endl;
 			cout << endl;
 
+		}
+		else 
+		{
+			cout << "Wrong choice, try again please.";
+			cin.clear();
 		}
 	}
 	return 0;

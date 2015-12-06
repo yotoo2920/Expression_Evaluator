@@ -51,7 +51,7 @@ bool Tokenizer::isOperator(std::string token) {
 }
 
 bool Tokenizer::isKeyword(string token) {
-	if(token == "sin" || token == "cos" || token == "tan" || token == "log" || token == "root" || token == "PI" || token == "e") return true;
+	if(token == "sin" || token == "cos" || token == "tan" || token == "csc" || token == "sec" || token == "cot" || token == "log" || token == "ln" || token == "root" || token == "PI" || token == "e") return true;
 	else return false;
 }
 
@@ -101,7 +101,11 @@ void Tokenizer::addToken(string token) {
 	else if (token == "sin") tokens.push_back(Token(sinFunc,token));
 	else if(token == "cos") tokens.push_back(Token(cosFunc,token));
 	else if(token == "tan") tokens.push_back(Token(tanFunc,token));
+	else if(token == "csc") tokens.push_back(Token(cscFunc,token));
+	else if(token == "sec") tokens.push_back(Token(secFunc,token));
+	else if(token == "cot") tokens.push_back(Token(cotFunc,token));
 	else if(token == "log") tokens.push_back(Token(LogFunc,token));
+	else if(token == "ln") tokens.push_back(Token(lnFunc,token));
 	else if(token == "root") tokens.push_back(Token(RootFunc,token));
 	else if(token == "+") tokens.push_back(Token(PlusSign,token));
 	else if(token == "-") tokens.push_back(Token(SubstSign,token));

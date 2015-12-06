@@ -6,7 +6,7 @@ enum TokenOfType
    IntValue, RealValue, NegValue, // whole, decimal, a Negative type of value
    PlusSign, SubstSign, MultSign, DivSign, // +,-,*,/, operators
    // mathematics functions, Log, e^, x^n, (x)^(1/2), ! Fact
-   sinFunc, cosFunc, tanFunc, LogFunc, PowerFunc, RootFunc, FactFunc,
+   sinFunc, cosFunc, tanFunc, LogFunc,lnFunc,cscFunc, secFunc, cotFunc, PowerFunc, RootFunc, FactFunc,
    PIvalue, Evalue, // constants (add more)  maybe avogadro's # etc
    OpenPar, ClosePar, // open and close parenthesis
    Error, // token with an error to be added to syntax_error vector

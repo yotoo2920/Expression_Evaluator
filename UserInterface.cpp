@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <string>
 #include "UserInterface.h"
 #include "Tokenizer.hpp"
 #include "CoreEvaluator.h"
@@ -17,8 +17,12 @@ void UserInterface::Test()
 {
 
 	Tokenizer parser;
-
-	parser.parseInput(parser.getUserInput());
+	string input = parser.getUserInput();
+	if(input.size() == 0) {
+		cout<<"No expression entered"<<endl;
+		return;
+	}
+	parser.parseInput(input);
 
 	vector<Token> TounSorted;
 
@@ -39,7 +43,9 @@ void UserInterface::Test()
 
 	CoreEvaluator* coreEvaluator = new CoreEvaluator();
 	vector<Token*>* SortedVector = coreEvaluator->ShuntingOperations(unSorted);
-
+	if(!coreEvaluator->isValid) {
+		return;
+	}
 	Calculate* C = new Calculate();
     C->getCalcultation(SortedVector);
 

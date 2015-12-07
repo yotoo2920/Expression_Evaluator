@@ -22,6 +22,7 @@ class CoreEvaluator
     CoreEvaluator();
     ~CoreEvaluator();
     vector<Token*>* ShuntingOperations(vector<Token>* toUnSort);
+	bool isValid;
 };
 
 #endif

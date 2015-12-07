@@ -27,6 +27,31 @@ Number* factNum=new Number();
 Power* pow= new Power();
 Number* powNum= new Number();
 
+/////
+Root* root= new Root();
+Number* rootNum= new Number();
+
+Sine* sine= new Sine();
+Number* sineNum= new Number();
+
+Cosine* cosine= new Cosine();
+Number* cosineNum= new Number();
+
+Tangent* tangent= new Tangent();
+Number* tangentNum= new Number();
+
+Secant* secant= new Secant();
+Number* secantNum= new Number();
+
+Cosecant* cosecant= new Cosecant();
+Number* cosecantNum= new Number();
+
+Cotangent* cotangent= new Cotangent();
+Number* cotangentNum= new Number();
+
+// Ln* ln= new Ln();
+// Number* lnNum= new Number();
+
 Calculate::Calculate()
 {
     //ctor
@@ -70,6 +95,46 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
 		{
 		  factNumbers(sortedList,i,calculationStack);
 		}
+
+    if (sortedList->at(i)->GetTokenStr()=="root")
+		{
+		  rootNumbers(sortedList,i,calculationStack);
+		}
+
+    if (sortedList->at(i)->GetTokenStr()=="sin")
+		{
+		  sineNumbers(sortedList,i,calculationStack);
+		}
+
+    if (sortedList->at(i)->GetTokenStr()=="cos")
+		{
+		  cosineNumbers(sortedList,i,calculationStack);
+		}
+
+    if (sortedList->at(i)->GetTokenStr()=="tan")
+		{
+		  tangentNumbers(sortedList,i,calculationStack);
+		}
+
+    if (sortedList->at(i)->GetTokenStr()=="sec")
+		{
+		  secNumbers(sortedList,i,calculationStack);
+		}
+
+    if (sortedList->at(i)->GetTokenStr()=="csc")
+		{
+		  cscNumbers(sortedList,i,calculationStack);
+		}
+
+    if (sortedList->at(i)->GetTokenStr()=="cot")
+		{
+		  cotNumbers(sortedList,i,calculationStack);
+		}
+
+    // if (sortedList->at(i)->GetTokenStr()=="ln")
+		// {
+		//   lnNumbers(sortedList,i,calculationStack);
+		// }
 	}
  calculationStack.top()->printNumber();
  //cout << endl;
@@ -134,6 +199,72 @@ void Calculate::factNumbers(vector<Token*>* sortedList,int& i,stack <Number*>& c
   calculationStack.push(factNum);
 
 }
+
+void Calculate::rootNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)
+{
+  n1=calculationStack.top();
+	calculationStack.pop();
+	n2=calculationStack.top();
+	calculationStack.pop();
+	rootNum= root->getRoot(n2,n1);
+  calculationStack.push(rootNum);
+}
+
+void Calculate::sineNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)
+{
+  n1=calculationStack.top();
+	calculationStack.pop();
+	sineNum=sine->getSine(n1);
+  calculationStack.push(sineNum);
+}
+
+void Calculate::cosineNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)
+{
+  n1=calculationStack.top();
+	calculationStack.pop();
+	cosineNum=cosine->getCosine(n1);
+  calculationStack.push(cosineNum);
+}
+
+void Calculate::tangentNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)
+{
+  n1=calculationStack.top();
+	calculationStack.pop();
+	tangentNum=tangent->getTangent(n1);
+  calculationStack.push(tangentNum);
+}
+
+void Calculate::secNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)
+{
+  n1=calculationStack.top();
+	calculationStack.pop();
+	secantNum=secant->getSecant(n1);
+  calculationStack.push(secantNum);
+}
+
+void Calculate::cscNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)
+{
+  n1=calculationStack.top();
+  calculationStack.pop();
+  cosecantNum=cosecant->getCosecant(n1);
+  calculationStack.push(cosecantNum);
+}
+
+void Calculate::cotNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)
+{
+  n1=calculationStack.top();
+  calculationStack.pop();
+  cotangentNum=cotangent->getCotangent(n1);
+  calculationStack.push(cotangentNum);
+}
+
+// void Calculate::lnNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)
+// {
+//   n1=calculationStack.top();
+//   calculationStack.pop();
+//   lnNum=ln->getLn(n1);
+//   calculationStack.push(lnNum);
+// }
 
 void Calculate::pushNuber(vector<Token*>* sortedList, int& i,stack <Number*>& calculationStack){
 

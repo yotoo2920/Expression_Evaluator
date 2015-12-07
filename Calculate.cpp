@@ -1,6 +1,6 @@
 #include <string>
 #include <vector>
-
+#include<iostream>
 #include "stdlib.h"
 #include "Calculate.h"
 
@@ -58,6 +58,7 @@ Number* cotangentNum= new Number();
 Calculate::Calculate()
 {
     //ctor
+	isValid = true;
 }
 void Calculate::getCalcultation(vector<Token*>* sortedList)
 {
@@ -92,6 +93,7 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
 		if (sortedList->at(i)->GetTokenStr()=="^")
 		{
 		  powNumbers(sortedList,i,calculationStack);
+		  if(!isValid) return;
 		}
 
 		if (sortedList->at(i)->GetTokenStr()=="!")
@@ -195,6 +197,11 @@ void Calculate::powNumbers(vector<Token*>* sortedList,int& i,stack <Number*>& ca
 	calculationStack.pop();
 	n2=calculationStack.top();
 	calculationStack.pop();
+	if(n1->exponent > 0) {
+		cout<<"Error, exponents may only be integer values"<<endl;
+		isValid = false;
+		return;
+	}
 	powNum=pow->getPower(n2,n1);
   calculationStack.push(powNum);
 }

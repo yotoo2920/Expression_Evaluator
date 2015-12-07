@@ -47,9 +47,13 @@ void UserInterface::Test()
 		return;
 	}
 	Calculate* C = new Calculate();
-	cout << "Ans: ";
-  C->getCalcultation(SortedVector);
+	C->getCalcultation(SortedVector);
 
+	if(!C->isValid) {
+		return;
+	}
+	
+	cout << " is the solution" << endl;
 	cout << endl;
 
 	// for (int i=0; i < SortedVector->size(); i++)

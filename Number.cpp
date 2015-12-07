@@ -95,31 +95,7 @@ void Number::power(int& mant ,int& power)
 
 void Number::printNumber()
 {
-
-
    std::cout << Number::asDouble();
-
-  // below does not print a negative when calling printNumber(), especially when using Sine
-
-  // if (exponent>0)
-  // {
-  //   int ten=10;
-  //   power(ten,exponent);
-  //   cout << mantissa/ten<<".";
-  //   int temp=ten;
-  // if (mantissa<0)
-  // {
-  //   mantissa*=-1;
-  // }
-  // while(temp/(mantissa%ten)>9)
-  // {
-  //   cout << "0";
-  //   temp=temp/10;
-  // }
-  //   cout<<mantissa%ten;
-  // }
-  // else cout << mantissa;
-
 }
 
 void Number::converStringToNumber(string str)

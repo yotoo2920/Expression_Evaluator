@@ -1,7 +1,8 @@
 #include <iostream>
 #include "Factorial.h"
+#include "Root.h"
+#include "Multiply.h"
 #include "Number.h"
-#include <stdexcept>
 
 using namespace std;
 
@@ -12,16 +13,33 @@ Factorial::Factorial()
 
 Number* Factorial::getFactorial(Number* fact)
 {
-
-	// Start magnitude with 1, then multiply the mantissa by itself specified in fact
-	// Return number!
-	magnitude = 1;
-	for(int i = 1; i <= fact->mantissa; i++)
+	sqrt = new Root();
+	mult = new Multiply();
+	count = new Number(0, 0);
+	temp = new Number();
+	temp1 = new Number(2, 0);
+	PI = new Number(31415, 4);
+	magnitude = new Number(1, 0);
+	if(fact->exponent > 0)
 	{
-		magnitude = magnitude * i;
+		while(fact->mantissa > 0)
+		{
+			magnitude->mantissa = magnitude->mantissa * fact->mantissa;
+			fact->mantissa = fact->mantissa - 10;
+			count->exponent = count->exponent + 1;		
+		}
+		temp = sqrt->getRoot(PI, temp1);
+		magnitude = mult->getProduct(temp, magnitude); 
+		magnitude->exponent = magnitude->exponent +  count->exponent;
 	}
-	decimal = 0;
-
-	Number* zz = new Number(magnitude, decimal);
-	return zz;
+	else
+	{
+		for(int i = 1; i <= fact->mantissa; i++)
+		{
+			magnitude->mantissa = magnitude->mantissa * i;
+		}
+		magnitude->exponent = 0;
+	}
+	
+	return magnitude;
 }

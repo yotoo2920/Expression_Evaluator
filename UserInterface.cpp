@@ -52,7 +52,7 @@ void UserInterface::Test()
 	if(!C->isValid) {
 		return;
 	}
-	
+
 	cout << " is the solution" << endl;
 	cout << endl;
 
@@ -103,20 +103,4 @@ void UserInterface::Menu(){
 
 	cout << endl;
 
-}
-
-void UserInterface::Welcome()
-{
-	cout << endl;
-	cout << "H = Help   OR" << "   O = Off" << endl;
-	cout << "-----------------------------" << endl;
-	cout << endl;
-
-	char choice;
-	cin >> choice;
-	if (cin.fail())
-	{
-		cout << "Wrong choice, try again please.";
-		cin.clear();
-	}
 }

@@ -52,6 +52,9 @@ Number* cotangentNum= new Number();
 // Ln* ln= new Ln();
 // Number* lnNum= new Number();
 
+// Log* log= new Log();
+// Number* logNum= new Number();
+
 Calculate::Calculate()
 {
     //ctor
@@ -134,6 +137,11 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
     // if (sortedList->at(i)->GetTokenStr()=="ln")
 		// {
 		//   lnNumbers(sortedList,i,calculationStack);
+		// }
+
+    // if (sortedList->at(i)->GetTokenStr()=="log")
+		// {
+		//   logNumbers(sortedList,i,calculationStack);
 		// }
 	}
  calculationStack.top()->printNumber();
@@ -264,6 +272,16 @@ void Calculate::cotNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &ca
 //   calculationStack.pop();
 //   lnNum=ln->getLn(n1);
 //   calculationStack.push(lnNum);
+// }
+
+// void Calculate::logNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)
+// {
+      // n1=calculationStack.top();
+      // calculationStack.pop();
+      // n2=calculationStack.top();
+      // calculationStack.pop();
+      // logNum= log->getLog(n2,n1);
+      // calculationStack.push(logNum);
 // }
 
 void Calculate::pushNuber(vector<Token*>* sortedList, int& i,stack <Number*>& calculationStack){

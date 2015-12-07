@@ -23,20 +23,20 @@ int main(int argc, char const *argv[])
 		cout << endl;
 
 		string choice;
-		cin >> choice;
+		getline(cin,choice);
 
 		if (choice == "C")
 		{
 			// if you reached this point then user input is a math expression
 			cin.clear();
-			cin.ignore(256,'\n');
+			
 			user->Test();
 		}
 		else if (choice == "c")
 		{   
 			// if you reached this point then user input is a math expression
 			cin.clear();
-			cin.ignore(256,'\n');
+			
 			user->Test();
 		}
 		else if (choice == "h")

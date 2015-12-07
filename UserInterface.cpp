@@ -71,7 +71,7 @@ void UserInterface::Menu(){
 
 	cout << "3. When Using functions" << endl;
 	cout << "\t Ex: sin(4) OR cos(4) OR tan(4)" << endl;
-	cout << "\t\t csc(4) OR sec(4) OR cot(4)";
+	cout << "\t\t csc(4) OR sec(4) OR cot(4)" << endl;
 
 	cout << "4. If using negative functions" << endl;
 	cout << "\t Ex: -sin(1)" << endl;

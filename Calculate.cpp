@@ -1,6 +1,6 @@
 #include <string>
 #include <vector>
-#include<iostream>
+#include <iostream>
 #include "stdlib.h"
 #include "Calculate.h"
 

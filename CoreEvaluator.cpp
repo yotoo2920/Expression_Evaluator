@@ -56,7 +56,7 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
             if (toStack->empty())
             {
                 cout << "Invalid expression entered." << endl;
-				isValid = false;
+								isValid = false;
                 while (!toQueue->empty())
                 {
                     toQueue->pop(); // cleaning the queue before printing the error
@@ -77,7 +77,7 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
                 else
                 {
                     cout << "Invalid expression entered." << endl;
-					isValid = false;
+										isValid = false;
                     while (!toQueue->empty())
                     {
                         toQueue->pop(); // cleaning the queue before printing the error
@@ -88,7 +88,7 @@ vector<Token*>* CoreEvaluator::ShuntingOperations(vector<Token>* toUnSort)
                 if (tempOpt->GetTokenType() == sinFunc || tempOpt->GetTokenType() == cosFunc || tempOpt->GetTokenType() == tanFunc || tempOpt->GetTokenType() == PowerFunc || tempOpt->GetTokenType() == FactFunc || tempOpt->GetTokenType() == secFunc || tempOpt->GetTokenType() == cscFunc || tempOpt->GetTokenType() == cotFunc || tempOpt->GetTokenType() == lnFunc)
                 {
                     cout << "Invalid expression entered." << endl;
-					isValid = false;
+										isValid = false;
                     while (!toQueue->empty())
                     {
                         toQueue->pop(); // cleaning the queue before printing the error

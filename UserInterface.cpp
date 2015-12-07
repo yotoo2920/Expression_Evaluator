@@ -55,7 +55,7 @@ void UserInterface::Test()
 
 	cout << " is the solution" << endl;
 	cout << endl;
-	
+
 	// for (int i=0; i < SortedVector->size(); i++)
 	// {
 	// cout << SortedVector->at(i)->GetTokenStr();

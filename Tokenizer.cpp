@@ -227,6 +227,17 @@ if(!this->tokens.empty())
 			syntax_errors.push_back(tokens[i]);
 		}
 		
+		if(i< tokens.size() - 3 && (tokens[i].GetTokenStr() == "root" || tokens[i].GetTokenStr() == "log")) {
+			for(int j = i; j < tokens.size(); j++) {
+				if(tokens[j].GetTokenStr() == ",") break;
+				else if(tokens[j].GetTokenStr() == ")") {
+					wrong_user_input = true;
+					syntax_errors.push_back(tokens[i]);
+					break;
+				}
+			}
+		}
+		
 	}
 	if(parenCheck != 0) wrong_user_input = true;
 	if(parenCheck > 0) syntax_errors.push_back(Token(OpenPar,"("));

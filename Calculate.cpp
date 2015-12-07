@@ -88,6 +88,7 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
 		if (sortedList->at(i)->GetTokenStr()=="/")
 		{
 		  divTwoNumbers(sortedList,i,calculationStack);
+		  if(!isValid) return;
 		}
 
 		if (sortedList->at(i)->GetTokenStr()=="^")
@@ -139,6 +140,7 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
     if (sortedList->at(i)->GetTokenStr()=="ln")
 		{
 		  lnNumbers(sortedList,i,calculationStack);
+		  if(!isValid) return;
 		}
 
     // if (sortedList->at(i)->GetTokenStr()=="log")
@@ -187,6 +189,11 @@ void Calculate::divTwoNumbers(vector<Token*>* sortedList,int& i,stack <Number*>&
 	calculationStack.pop();
 	n2=calculationStack.top();
 	calculationStack.pop();
+	if(n1->mantissa == 0) {
+		cout<<"Error, cannot divide by 0 "<<endl;
+		isValid = false;
+		return;
+	}
 	division=divi->getDividend(n2,n1);
   calculationStack.push(division);
 }
@@ -277,8 +284,14 @@ void Calculate::lnNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &cal
 {
   n1=calculationStack.top();
   calculationStack.pop();
+  if(n1->mantissa <= 0) {
+	  cout<<"Error, logarithm of values less then or equal to 0 does not exist"<<endl;
+	  isValid = false;
+	  return;
+  }
   lnNum=ln->getLn(n1);
   calculationStack.push(lnNum);
+  
 }
 
 // void Calculate::logNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)

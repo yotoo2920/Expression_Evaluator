@@ -60,6 +60,7 @@ void UserInterface::Test()
 }
 
 void UserInterface::Menu(){
+	
 	std::cout << "Basics: "<< endl;
 
 	std::cout << "1. Add/Substract/Multiplication/Division" << std::endl;
@@ -69,19 +70,31 @@ void UserInterface::Menu(){
 	std::cout << "\t Ex: 5 + (-3)" << std::endl;
 
 	std::cout << "3. When Using functions" << std::endl;
-	std::cout << "\t Ex: -sin(3) OR cos(4)" << std::endl;
+	std::cout << "\t Ex: sin(4) OR cos(4) OR tan(4)" << std::endl;
+	std::cout << "\t\t csc(4) OR sec(4) OR cot(4)"
 
-	std::cout << "4. When Using Exponents" << std::endl;
+	std::cout << "4. If using negative functions" << std::endl;
+	std::cout << "\t Ex: -sin(1)" << std::endl;
+
+	std::cout << "5. When Using Exponents" << std::endl;
 	std::cout << "\t Ex: 3 + 4^3" << std::endl;
 
-	std::cout << "5. Natural log" <<std::endl;
-	std::cout << "\t Ex: log(3,2)" << std::endl;
+	std::cout << "6. Natural log" <<std::endl;
+	std::cout << "\t Ex: ln(3)" << std::endl;
 
-	std::cout << "6. Root" << std::endl;
-	std::cout << "\t Ex: " << std::endl;
+	std::cout << "7. Log" << std::endl;
+	std::cout << "\t Ex: log(3,2)" << endl;
+	std::cout << "\t Where 3 is the base" << std::endl;
 
-	std::cout << "7. Factorial" << std::endl;
+	std::cout << "8. Root" << std::endl;
+	std::cout << "\t Ex: root(4,2) " << std::endl;
+	std::cout << "\t Where 2 is the index" << std::endl;
+
+	std::cout << "9. Factorial" << std::endl;
 	std::cout << "\t Ex: 4 + 2!" << std::endl;
+
+	std::cout << "10. PI should be in capital letter" << std::endl;
+	std::cout << "\t Ex: 2 * PI" << std::endl;
 
 	std::cout << std::endl;
 

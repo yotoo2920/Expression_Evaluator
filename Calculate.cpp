@@ -101,6 +101,7 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
 		if (sortedList->at(i)->GetTokenStr()=="!")
 		{
 		  factNumbers(sortedList,i,calculationStack);
+			if(!isValid) return;
 		}
 
     if (sortedList->at(i)->GetTokenStr()=="root")
@@ -218,6 +219,11 @@ void Calculate::factNumbers(vector<Token*>* sortedList,int& i,stack <Number*>& c
 
   n1=calculationStack.top();
 	calculationStack.pop();
+	if(n1->mantissa < 0) {
+		cout<<"Error, exponents may only be integer values"<<endl;
+		isValid = false;
+		return;
+	}
 	factNum=fac->getFactorial(n1);
   calculationStack.push(factNum);
 
@@ -292,7 +298,7 @@ void Calculate::lnNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &cal
   }
   lnNum=ln->getLn(n1);
   calculationStack.push(lnNum);
-  
+
 }
 
 void Calculate::logNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)

@@ -8,13 +8,13 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-	
+
 	UserInterface* user = new UserInterface();
 	bool in = true;
 
 	cout << endl;
-	cout<< "Welcome to Calculator" << endl;
-   
+	cout<< "Welcome to Crisis Calculator" << endl;
+
 	while(in)
 	{
 		cout << endl;
@@ -29,14 +29,14 @@ int main(int argc, char const *argv[])
 		{
 			// if you reached this point then user input is a math expression
 			cin.clear();
-			
+
 			user->Test();
 		}
 		else if (choice == "c")
-		{   
+		{
 			// if you reached this point then user input is a math expression
 			cin.clear();
-			
+
 			user->Test();
 		}
 		else if (choice == "h")
@@ -62,7 +62,7 @@ int main(int argc, char const *argv[])
 			cout << endl;
 
 		}
-		else 
+		else
 		{
 			cout << "Wrong choice, try again please.";
 			cin.clear();

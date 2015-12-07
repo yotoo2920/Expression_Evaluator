@@ -47,16 +47,17 @@ void UserInterface::Test()
 		return;
 	}
 	Calculate* C = new Calculate();
-    C->getCalcultation(SortedVector);
+	cout << "Ans: ";
+  C->getCalcultation(SortedVector);
 
 	cout << endl;
 
-	for (int i=0; i < SortedVector->size(); i++)
-	{
-	cout << SortedVector->at(i)->GetTokenStr();
-	cout << " ";
-	}
-	cout << " " << endl;
+	// for (int i=0; i < SortedVector->size(); i++)
+	// {
+	// cout << SortedVector->at(i)->GetTokenStr();
+	// cout << " ";
+	// }
+	// cout << " " << endl;
 }
 
 void UserInterface::Menu(){

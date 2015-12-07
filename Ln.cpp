@@ -12,6 +12,11 @@ using namespace std;
 
 Ln::Ln()
 {
+
+}
+
+Number* Ln::getLn(Number* value)
+{
 	digit2 = new Number();
 	digit = 0;
 	a = new Add();
@@ -22,7 +27,7 @@ Ln::Ln()
 	tempValue = new Number();
 	temp1 = new Number();
 	temp2 = new Number();
-	temp3 = new Number(); 
+	temp3 = new Number();
 	temp4 = new Number();
 	dec = new Number();
 	neg = new Number(-1, 0);
@@ -30,13 +35,9 @@ Ln::Ln()
 	one = new Number(1, 0);
 	ln10 = new Number(23026, 4);
 
-}
-
-Number* Ln::getLn(Number* value)
-{
 	tempValue->mantissa = value->mantissa;		//setting the temp value mantissa
 	tempValue->exponent = value->exponent;		//setting the temp value exponent
-	
+
 	if(value->mantissa == 0)
 	{
 		throw invalid_argument("You cannot do the natural log of zero");
@@ -66,23 +67,23 @@ Number* Ln::getLn(Number* value)
 		value->mantissa = tempValue->mantissa;
 		value->exponent = digit;
 		dec = sub->getDifference(value, one);
-		
+
 		for(int n = 1; n < 250; n++)
 		{
-			
+
 			Number* base = new Number(n, 0);
 			Number* inc = new Number(n + 1,0);
 
 			temp1 = pow->getPower(neg, inc);
 
 			temp2 = div->getDividend(temp1, base);
-			
+
 			temp3 = pow->getPower(dec, base);
-		
+
 			temp4 = mult->getProduct(temp2, temp3);
-			
+
 			ans = a->getSum(ans, temp4);
-			
+
 			delete base;
 			delete inc;
 		}
@@ -92,4 +93,3 @@ Number* Ln::getLn(Number* value)
 	}
 	return ans;
 }
-

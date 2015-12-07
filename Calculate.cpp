@@ -147,6 +147,7 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
     if (sortedList->at(i)->GetTokenStr()=="log")
 		{
 		  logNumbers(sortedList,i,calculationStack);
+		  if(!isValid) return;
 		}
 	}
  calculationStack.top()->printNumber();
@@ -300,6 +301,11 @@ void Calculate::logNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &ca
       calculationStack.pop();
       n2=calculationStack.top();
       calculationStack.pop();
+	  if(n1->mantissa <= 0 || n2->mantissa <= 0) {
+	  cout<<"Error, logarithm of values less then or equal to 0 does not exist"<<endl;
+	  isValid = false;
+	  return;
+  }
       logNum= log->getLog(n2,n1);
       calculationStack.push(logNum);
 }

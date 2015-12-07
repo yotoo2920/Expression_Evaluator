@@ -28,6 +28,10 @@ Number* Factorial::getFactorial(Number* fact)
 			fact->mantissa = fact->mantissa - 10;
 			count->exponent = count->exponent + 1;		
 		}
+		if(fact->mantissa == 0)
+		{
+			return magnitude;
+		}
 		temp = sqrt->getRoot(PI, temp1);
 		magnitude = mult->getProduct(temp, magnitude); 
 		magnitude->exponent = magnitude->exponent +  count->exponent;

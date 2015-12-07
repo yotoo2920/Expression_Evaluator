@@ -19,7 +19,7 @@
 #include "Cosecant.h"
 #include "Cotangent.h"
 #include "Ln.h"
-//#include "Log.h"
+#include "Log.h"
 
 
 #include <stack>
@@ -50,7 +50,7 @@ class Calculate
     void cscNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack);
     void cotNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack);
     void lnNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack);
-    //void logNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack);
+    void logNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack);
 };
 
 #endif // CALCULATE_H

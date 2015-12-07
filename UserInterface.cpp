@@ -89,7 +89,7 @@ void UserInterface::Menu(){
 
 	cout << "7. Log" << endl;
 	cout << "\t Ex: log(3,2)" << endl;
-	cout << "\t Where 3 is the base" << endl;
+	cout << "\t Where 2 is the base" << endl;
 
 	cout << "8. Root" << endl;
 	cout << "\t Ex: root(4,2) " << endl;

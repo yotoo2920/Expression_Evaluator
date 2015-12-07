@@ -28,6 +28,7 @@ class Calculate
 {
     public:
     Calculate();
+	bool isValid;
     long long resultMantissa;
     long long resultExp;
     void getCalcultation(vector<Token*>* sortedList);

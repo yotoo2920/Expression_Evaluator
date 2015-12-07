@@ -48,7 +48,9 @@ void UserInterface::Test()
 	}
 	Calculate* C = new Calculate();
     C->getCalcultation(SortedVector);
-
+	if(!C->isValid) {
+		return;
+	}
 	cout << endl;
 
 	for (int i=0; i < SortedVector->size(); i++)

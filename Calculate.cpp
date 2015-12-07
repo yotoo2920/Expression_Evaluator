@@ -52,8 +52,8 @@ Number* cotangentNum= new Number();
 Ln* ln= new Ln();
 Number* lnNum= new Number();
 
-// Log* log= new Log();
-// Number* logNum= new Number();
+Log* log= new Log();
+Number* logNum= new Number();
 
 Calculate::Calculate()
 {
@@ -142,10 +142,10 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
 		  lnNumbers(sortedList,i,calculationStack);
 		}
 
-    // if (sortedList->at(i)->GetTokenStr()=="log")
-		// {
-		//   logNumbers(sortedList,i,calculationStack);
-		// }
+    if (sortedList->at(i)->GetTokenStr()=="log")
+		{
+		  logNumbers(sortedList,i,calculationStack);
+		}
 	}
  calculationStack.top()->printNumber();
 }
@@ -281,15 +281,15 @@ void Calculate::lnNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &cal
   calculationStack.push(lnNum);
 }
 
-// void Calculate::logNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)
-// {
-      // n1=calculationStack.top();
-      // calculationStack.pop();
-      // n2=calculationStack.top();
-      // calculationStack.pop();
-      // logNum= log->getLog(n2,n1);
-      // calculationStack.push(logNum);
-// }
+void Calculate::logNumbers(vector<Token*>* sortedList,int& i,stack <Number*> &calculationStack)
+{
+      n1=calculationStack.top();
+      calculationStack.pop();
+      n2=calculationStack.top();
+      calculationStack.pop();
+      logNum= log->getLog(n2,n1);
+      calculationStack.push(logNum);
+}
 
 void Calculate::pushNuber(vector<Token*>* sortedList, int& i,stack <Number*>& calculationStack){
 

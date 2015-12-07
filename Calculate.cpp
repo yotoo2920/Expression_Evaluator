@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+
 #include "stdlib.h"
 #include "Calculate.h"
 
@@ -27,7 +28,6 @@ Number* factNum=new Number();
 Power* pow= new Power();
 Number* powNum= new Number();
 
-/////
 Root* root= new Root();
 Number* rootNum= new Number();
 
@@ -70,6 +70,7 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
 		  pushNuber(sortedList,i,calculationStack);
 		}
 
+		// if + found call addition and the same for the rest of the operants
 		if (sortedList->at(i)->GetTokenStr()=="+")
 		{
 		  addTwoNumbers(sortedList,i,calculationStack);
@@ -93,7 +94,7 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
 		if (sortedList->at(i)->GetTokenStr()=="^")
 		{
 		  powNumbers(sortedList,i,calculationStack);
-		  if(!isValid) return;
+		  if(!isValid) return; // checking for int exponet only
 		}
 
 		if (sortedList->at(i)->GetTokenStr()=="!")
@@ -147,7 +148,6 @@ void Calculate::getCalcultation(vector<Token*>* sortedList)
 		// }
 	}
  calculationStack.top()->printNumber();
- //cout << endl;
 }
 
 void Calculate::addTwoNumbers(vector<Token*>* sortedList,int& i,stack <Number*>& calculationStack){

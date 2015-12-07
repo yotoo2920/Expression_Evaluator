@@ -32,7 +32,7 @@ void UserInterface::Test()
 	// if error vector has at least one Invalid expression
 	if(errors.size() > 0)
 	{
-	std::cout << "Invalid expression entered." << std::endl;
+	cout << "Invalid expression entered." << endl;
 	return;
 	//return 0;
 	}
@@ -53,50 +53,50 @@ void UserInterface::Test()
 
 	for (int i=0; i < SortedVector->size(); i++)
 	{
-	std::cout << SortedVector->at(i)->GetTokenStr();
-	std::cout << " ";
+	cout << SortedVector->at(i)->GetTokenStr();
+	cout << " ";
 	}
-	std::cout << " " << std::endl;
+	cout << " " << endl;
 }
 
 void UserInterface::Menu(){
-	
-	std::cout << "Basics: "<< endl;
 
-	std::cout << "1. Add/Substract/Multiplication/Division" << std::endl;
-	std::cout << "\t Ex: 3 + 4 - 6 * 2 + 3/2" << std::endl;
+	cout << "Basics: "<< endl;
 
-	std::cout << "2. Negative numbers should always be in parentheses" << std::endl;
-	std::cout << "\t Ex: 5 + (-3)" << std::endl;
+	cout << "1. Add/Substract/Multiplication/Division" << endl;
+	cout << "\t Ex: 3 + 4 - 6 * 2 + 3/2" << endl;
 
-	std::cout << "3. When Using functions" << std::endl;
-	std::cout << "\t Ex: sin(4) OR cos(4) OR tan(4)" << std::endl;
-	std::cout << "\t\t csc(4) OR sec(4) OR cot(4)"
+	cout << "2. Negative numbers should always be in parentheses" << endl;
+	cout << "\t Ex: 5 + (-3)" << endl;
 
-	std::cout << "4. If using negative functions" << std::endl;
-	std::cout << "\t Ex: -sin(1)" << std::endl;
+	cout << "3. When Using functions" << endl;
+	cout << "\t Ex: sin(4) OR cos(4) OR tan(4)" << endl;
+	cout << "\t\t csc(4) OR sec(4) OR cot(4)";
 
-	std::cout << "5. When Using Exponents" << std::endl;
-	std::cout << "\t Ex: 3 + 4^3" << std::endl;
+	cout << "4. If using negative functions" << endl;
+	cout << "\t Ex: -sin(1)" << endl;
 
-	std::cout << "6. Natural log" <<std::endl;
-	std::cout << "\t Ex: ln(3)" << std::endl;
+	cout << "5. When Using Exponents" << endl;
+	cout << "\t Ex: 3 + 4^3" << endl;
 
-	std::cout << "7. Log" << std::endl;
-	std::cout << "\t Ex: log(3,2)" << endl;
-	std::cout << "\t Where 3 is the base" << std::endl;
+	cout << "6. Natural log" <<endl;
+	cout << "\t Ex: ln(3)" << endl;
 
-	std::cout << "8. Root" << std::endl;
-	std::cout << "\t Ex: root(4,2) " << std::endl;
-	std::cout << "\t Where 2 is the index" << std::endl;
+	cout << "7. Log" << endl;
+	cout << "\t Ex: log(3,2)" << endl;
+	cout << "\t Where 3 is the base" << endl;
 
-	std::cout << "9. Factorial" << std::endl;
-	std::cout << "\t Ex: 4 + 2!" << std::endl;
+	cout << "8. Root" << endl;
+	cout << "\t Ex: root(4,2) " << endl;
+	cout << "\t Where 2 is the index" << endl;
 
-	std::cout << "10. PI should be in capital letter" << std::endl;
-	std::cout << "\t Ex: 2 * PI" << std::endl;
+	cout << "9. Factorial" << endl;
+	cout << "\t Ex: 4 + 2!" << endl;
 
-	std::cout << std::endl;
+	cout << "10. PI should be in capital letter" << endl;
+	cout << "\t Ex: 2 * PI" << endl;
+
+	cout << endl;
 
 }
 
